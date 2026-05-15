@@ -13,34 +13,7 @@ While competitors rely on anecdotal "track feel," Pahim Racing utilizes **boxbox
 - **Live Application:** [boxbox.pahim.org](https://boxbox.pahim.org)
 - **Source Code:** [github.com/apahim/boxbox](https://github.com/apahim/boxbox)
 
-## Pipeline Architecture
-
-```
-  ┌──────────────┐     ┌─────────────────────┐     ┌──────────────────┐
-  │  GoPro Hero  │ ──▶ │  GPMF Metadata      │ ──▶ │  Stream Parser   │
-  │  (Raw Video) │     │  Extraction          │     │  (Python)        │
-  └──────────────┘     └─────────────────────┘     └──────────────────┘
-                                                            │
-                              ┌──────────────────────────────┤
-                              ▼                              ▼
-                   ┌───────────────────┐          ┌──────────────────┐
-                   │  GPS Coordinates  │          │  Accelerometer   │
-                   │  Gyroscope Data   │          │  G-Force Profile │
-                   └───────────────────┘          └──────────────────┘
-                              │                              │
-                              └──────────┬───────────────────┘
-                                         ▼
-                              ┌──────────────────────┐
-                              │  Delta-Time Analysis  │
-                              │  (Ideal vs. Actual)   │
-                              └──────────────────────┘
-                                         │
-                                         ▼
-                              ┌──────────────────────┐
-                              │  Telemetry Overlay    │
-                              │  (Video Output)       │
-                              └──────────────────────┘
-```
+<img src="/img/boxbox-pipeline.png" alt="Pahim Racing Telemetry Pipeline Architecture (v2.0 Beta)" class="w-full rounded-lg border border-subtle mt-4 mb-4">
 
 ### Data Streams
 
