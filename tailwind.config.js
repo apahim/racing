@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        redhat: '#EE0000',
+        accent: '#E07020',
         obsidian: '#0A0A0A',
         surface: '#111111',
         subtle: '#1A1A1A',

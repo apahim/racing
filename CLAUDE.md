@@ -30,7 +30,7 @@ npm run build        # production build to public/
 
 ### Colors (defined in tailwind.config.js)
 
-- `redhat` (#EE0000) — primary accent
+- `accent` (#E07020) — primary accent (warm orange)
 - `obsidian` (#0A0A0A) — page background
 - `surface` (#111111) — card/component backgrounds
 - `subtle` (#1A1A1A) — borders

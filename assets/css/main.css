@@ -10,7 +10,7 @@
   }
 
   ::selection {
-    background-color: rgba(238, 0, 0, 0.3);
+    background-color: rgba(224, 112, 32, 0.3);
     color: #fff;
   }
 }
@@ -39,11 +39,11 @@
   .status-card::before {
     content: '';
     @apply absolute top-0 left-0 w-full h-px;
-    background: linear-gradient(90deg, transparent, rgba(238, 0, 0, 0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(224, 112, 32, 0.3), transparent);
   }
 
   .glow-border {
-    box-shadow: 0 0 20px rgba(238, 0, 0, 0.08);
+    box-shadow: 0 0 20px rgba(224, 112, 32, 0.08);
   }
 
   .tier-card {
@@ -52,27 +52,27 @@
   }
 
   .tier-card:hover {
-    @apply border-redhat/30;
-    box-shadow: 0 0 30px rgba(238, 0, 0, 0.06);
+    @apply border-accent/30;
+    box-shadow: 0 0 30px rgba(224, 112, 32, 0.06);
   }
 
   .tier-card.featured {
-    @apply border-redhat/50;
-    box-shadow: 0 0 40px rgba(238, 0, 0, 0.1);
+    @apply border-accent/50;
+    box-shadow: 0 0 40px rgba(224, 112, 32, 0.1);
   }
 
   .btn-primary {
-    @apply inline-block px-6 py-3 bg-redhat text-white font-mono text-sm tracking-wider
-           rounded transition-all duration-200 hover:bg-red-700 hover:shadow-lg;
+    @apply inline-block px-6 py-3 bg-accent text-white font-mono text-sm tracking-wider
+           rounded transition-all duration-200 hover:bg-orange-800 hover:shadow-lg;
   }
 
   .btn-outline {
-    @apply inline-block px-6 py-3 border border-redhat/50 text-redhat font-mono text-sm
-           tracking-wider rounded transition-all duration-200 hover:bg-redhat/10;
+    @apply inline-block px-6 py-3 border border-accent/50 text-accent font-mono text-sm
+           tracking-wider rounded transition-all duration-200 hover:bg-accent/10;
   }
 
   .section-label {
-    @apply font-mono text-xs tracking-[0.2em] text-redhat uppercase mb-2;
+    @apply font-mono text-xs tracking-[0.2em] text-accent uppercase mb-2;
   }
 
   .section-title {
