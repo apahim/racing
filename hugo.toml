@@ -29,14 +29,18 @@ title = 'Pahim Racing'
     pageRef = '/'
     weight = 10
   [[menus.main]]
-    name = 'BoxBox'
-    pageRef = '/boxbox'
-    weight = 20
-  [[menus.main]]
     name = 'The Program'
     pageRef = '/about'
+    weight = 20
+  [[menus.main]]
+    name = 'Foundation'
+    pageRef = '/foundation'
     weight = 30
+  [[menus.main]]
+    name = 'Competition'
+    pageRef = '/competition'
+    weight = 40
   [[menus.main]]
     name = 'Partnerships'
     pageRef = '/partnerships'
-    weight = 40
+    weight = 50

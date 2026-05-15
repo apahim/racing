@@ -1,8 +1,8 @@
 <div class="tier-card {{ if .featured }}featured{{ end }}">
   {{ if .featured }}
-    <div class="absolute top-0 right-0 bg-redhat text-white font-mono text-xs px-3 py-1 rounded-bl">
-      LIMITED
-    </div>
+  <div class="absolute top-0 right-0 bg-redhat text-white font-mono text-xs px-3 py-1 rounded-bl">
+    LIMITED
+  </div>
   {{ end }}
 
   <div class="mb-6">
@@ -13,20 +13,20 @@
 
   <div class="mb-6">
     <span class="font-mono text-3xl font-bold text-white">&euro;{{ .price }}</span>
-    <span class="text-muted text-sm font-mono"> / season</span>
+    <span class="text-muted text-sm font-mono"> / {{ with .unit }}{{ . }}{{ else }}season{{ end }}</span>
   </div>
 
   <ul class="flex-1 space-y-3 mb-8">
     {{ range .deliverables }}
-      <li class="flex items-start gap-2 text-sm text-slate">
-        <span class="text-redhat mt-0.5 shrink-0">&rsaquo;</span>
-        <span>{{ . }}</span>
-      </li>
+    <li class="flex items-start gap-2 text-sm text-slate">
+      <span class="text-redhat mt-0.5 shrink-0">&rsaquo;</span>
+      <span>{{ . }}</span>
+    </li>
     {{ end }}
   </ul>
 
   <a href="mailto:racing@pahim.org?subject={{ .name }} Partnership Inquiry"
-     class="{{ if .featured }}btn-primary{{ else }}btn-outline{{ end }} text-center w-full">
+    class="{{ if .featured }}btn-primary{{ else }}btn-outline{{ end }} text-center w-full">
     Request Technical Briefing &rarr;
   </a>
 </div>

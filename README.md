@@ -27,11 +27,21 @@ npm run build
 
 Outputs the production site to `public/` with minified assets.
 
+## Site Pages
+
+| Page | Path | Description |
+|------|------|-------------|
+| Dashboard | `/` | Homepage: hero, system status, program summary |
+| Foundation | `/foundation/` | Phase 1: physical optimization, track development, BoxBox telemetry |
+| Competition | `/competition/` | Phase 2: T4 championship, Stapleton Motorsport, Alfano 7 |
+| The Program | `/about/` | Overview hub: mission, phase cards, timeline, founder |
+| Partnerships | `/partnerships/` | Partnership tiers and value proposition |
+
 ## Project Structure
 
 ```
-content/          Page content (Markdown)
-layouts/          Hugo templates and partials
+content/          Page content (front-matter-only Markdown)
+layouts/          Hugo templates — custom layouts per page type
 assets/css/       Tailwind CSS source (main.css)
 static/img/       Images served directly by Hugo
 tailwind.config.js
@@ -40,7 +50,7 @@ hugo.toml         Hugo configuration
 
 ## Related
 
-- [boxbox](https://github.com/apahim/boxbox) — custom telemetry pipeline for karting performance analysis ([boxbox.pahim.org](https://boxbox.pahim.org))
+- [boxbox](https://github.com/apahim/boxbox) — custom telemetry dashboard for rental kart data analysis during the preparation phase ([boxbox.pahim.org](https://boxbox.pahim.org))
 
 ## Author
 

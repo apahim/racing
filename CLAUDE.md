@@ -14,10 +14,13 @@ npm run build        # production build to public/
 
 ## Directory Layout
 
-- `content/` — page content in Markdown (front matter: title, label, subtitle, description)
+- `content/` — page content as front-matter-only Markdown files (content lives in custom layouts)
 - `layouts/` — Hugo templates: `_default/baseof.html` is the shell, `index.html` is the homepage
 - `layouts/partials/` — reusable components: nav, hero, footer, head, system-status, tier-card
-- `layouts/partnerships/single.html` — custom layout for the partnerships page
+- `layouts/about/single.html` — The Program overview hub (mission, phase cards, timeline, founder)
+- `layouts/foundation/single.html` — Phase 1: Foundation (physical, track, BoxBox sections)
+- `layouts/competition/single.html` — Phase 2: Competition (campaign, team, telemetry, control env)
+- `layouts/partnerships/single.html` — partnership tiers and value proposition
 - `assets/css/main.css` — Tailwind source with component classes
 - `static/img/` — images served at `/img/` (use this for new images)
 - `hugo.toml` — site config, menus, params
@@ -48,6 +51,24 @@ npm run build        # production build to public/
 - `section-label` — monospace red uppercase label (e.g., "// The Stack")
 - `section-title` — section heading
 - `glow-border` — subtle red glow effect
+
+## Site Structure
+
+The site follows a phased campaign narrative:
+
+- **Dashboard** (`/`) — homepage with hero, system status, program summary, telemetry preview, partnerships CTA
+- **Foundation** (`/foundation/`) — Phase 1 detail: physical optimization (119→89kg), track development, BoxBox telemetry
+- **Competition** (`/competition/`) — Phase 2 detail: T4 championship, Stapleton Motorsport, Alfano 7 telemetry
+- **The Program** (`/about/`) — overview hub linking to phase pages, campaign timeline, Phase 3 "what's next", founder
+- **Partnerships** (`/partnerships/`) — partnership tiers (Apex, Grid Partner, Supporter)
+
+Nav also includes an external link to [boxbox.pahim.org](https://boxbox.pahim.org).
+
+### Key Distinctions
+
+- **BoxBox** = preparation-phase tool for rental kart telemetry (GoPro/RaceChrono). Lives on the Foundation page, NOT a standalone page
+- **Alfano 7** = professional telemetry for T4 competition (Phase 2). Lives on the Competition page
+- **Stapleton Motorsport** = racing team for 2027 T4 campaign. Integrated mention, not a separate section
 
 ## Brand Voice
 

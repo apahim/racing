@@ -15,63 +15,54 @@
 
 <section class="pb-20">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid md:grid-cols-3 gap-6">
 
       {{ partial "tier-card.html" (dict
-        "index" "0"
-        "name" "APEX PARTNER"
-        "tagline" "Title Partnership. Limited to 1."
-        "price" "6,500"
-        "featured" true
-        "deliverables" (slice
-          "Primary kart branding: side pods, front fairing"
-          "Naming rights: \"Pahim Racing [Company] Edition\""
-          "Executive keynote on performance engineering parallels"
-          "Exclusive 4K documentary-style technical feature"
-          "Chest of suit and team trailer branding"
-        )
+      "index" "0"
+      "name" "APEX PARTNER"
+      "tagline" "Title Partnership. Limited to 1."
+      "price" "3,600"
+      "featured" true
+      "deliverables" (slice
+      "Kart branding in designated T4 sponsor areas"
+      "Primary race suit (chest and back) and helmet placement"
+      "\"Pahim Racing x [Company]\" co-branding across digital channels"
+      "Logo and link on racing.pahim.org"
+      "Featured in all LinkedIn race reports and technical content"
+      "Quarterly co-branded technical analysis post"
+      "High-resolution photography package from photographed rounds"
+      "End-of-season data report with telemetry analysis"
+      )
       ) }}
 
       {{ partial "tier-card.html" (dict
-        "index" "1"
-        "name" "KINETIC PARTNER"
-        "tagline" "Primary Visibility."
-        "price" "3,000"
-        "featured" false
-        "deliverables" (slice
-          "Rear bumper, suit shoulders, helmet branding"
-          "Monthly LinkedIn \"System Update\" integration"
-          "Raw high-resolution photography access"
-          "Brand-tagged data-driven content for your marketing"
-        )
+      "index" "1"
+      "name" "GRID PARTNER"
+      "tagline" "Fund a race weekend."
+      "price" "900"
+      "unit" "race"
+      "featured" false
+      "deliverables" (slice
+      "Helmet branding for your sponsored round"
+      "Logo on racing.pahim.org partners section (full season)"
+      "Mentioned in all LinkedIn race reports throughout the season"
+      "Dedicated LinkedIn race report for your sponsored round"
+      "Race weekend photo set"
+      "End-of-season technical report"
+      )
       ) }}
 
       {{ partial "tier-card.html" (dict
-        "index" "2"
-        "name" "TELEMETRY PARTNER"
-        "tagline" "Technical Integration."
-        "price" "1,500"
-        "featured" false
-        "deliverables" (slice
-          "Nassau panel (front of kart) branding"
-          "GitHub README credit in the boxbox project"
-          "Association with the data and automation stack"
-          "Ideal for SaaS, tooling, and cybersecurity firms"
-        )
-      ) }}
-
-      {{ partial "tier-card.html" (dict
-        "index" "3"
-        "name" "THE 500 CLUB"
-        "tagline" "Founding Patron."
-        "price" "500"
-        "featured" false
-        "deliverables" (slice
-          "Name and logo on the Supporter Wall"
-          "Signed framed photograph"
-          "End-of-season technical Annual Report"
-          "Founding Partner recognition across all channels"
-        )
+      "index" "2"
+      "name" "SUPPORTER"
+      "tagline" "Back the campaign."
+      "price" "450"
+      "featured" false
+      "deliverables" (slice
+      "Name and logo on racing.pahim.org supporter wall"
+      "Acknowledgment in season-opening and season-closing LinkedIn posts"
+      "End-of-season technical report"
+      )
       ) }}
 
     </div>
@@ -138,16 +129,12 @@
               <span class="text-yellow-500 ml-2">1 SLOT AVAILABLE</span>
             </div>
             <div class="font-mono">
-              <span class="text-white">Kinetic Partners:</span>
+              <span class="text-white">Grid Partners:</span>
               <span class="text-green-400 ml-2">ACCEPTING</span>
             </div>
             <div class="font-mono">
-              <span class="text-white">Telemetry Partners:</span>
-              <span class="text-green-400 ml-2">ACCEPTING</span>
-            </div>
-            <div class="font-mono">
-              <span class="text-white">500 Club:</span>
-              <span class="text-green-400 ml-2">ACCEPTING</span>
+              <span class="text-white">Supporters:</span>
+              <span class="text-green-400 ml-2">OPEN</span>
             </div>
           </div>
         </div>
