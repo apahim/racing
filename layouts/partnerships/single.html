@@ -15,7 +15,7 @@
 
 <section class="pb-20">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
       {{ partial "tier-card.html" (dict
       "index" "0"
@@ -37,6 +37,24 @@
 
       {{ partial "tier-card.html" (dict
       "index" "1"
+      "name" "NATIONS CUP"
+      "tagline" "Send us to Valencia. Limited to 1."
+      "price" "3,500"
+      "featured" true
+      "deliverables" (slice
+      "Exclusive title partner for the T4 Nations Cup international event"
+      "Helmet and race suit branding at the Nations Cup (250+ drivers, 30+ countries)"
+      "Dedicated pre-event, race day, and post-event LinkedIn content series"
+      "Full photo and video package from Valencia"
+      "Co-branded technical race report with international field analysis"
+      "Logo on racing.pahim.org Nations Cup section (permanent)"
+      "Behind-the-scenes content: travel, paddock, scrutineering, race day"
+      "End-of-event telemetry and performance data report"
+      )
+      ) }}
+
+      {{ partial "tier-card.html" (dict
+      "index" "2"
       "name" "GRID PARTNER"
       "tagline" "Fund a race weekend."
       "price" "900"
@@ -53,7 +71,7 @@
       ) }}
 
       {{ partial "tier-card.html" (dict
-      "index" "2"
+      "index" "3"
       "name" "SUPPORTER"
       "tagline" "Back the campaign."
       "price" "450"
