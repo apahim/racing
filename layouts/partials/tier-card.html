@@ -25,7 +25,7 @@
     {{ end }}
   </ul>
 
-  <a href="mailto:amador@pahim.org?subject={{ .name }} Partnership Inquiry"
+  <a href="{{ site.Params.contactFormURL }}" target="_blank" rel="noopener"
     class="{{ if .featured }}btn-primary{{ else }}btn-outline{{ end }} text-center w-full">
     Request Technical Briefing &rarr;
   </a>
