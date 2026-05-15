@@ -1,0 +1,42 @@
+baseURL = 'https://racing.pahim.org/'
+locale = 'en-us'
+title = 'Pahim Racing'
+
+[build]
+  [build.buildStats]
+    enable = true
+
+[module]
+  [module.hugoVersion]
+    extended = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  description = "Engineering the Apex. A Senior Principal Engineer's approach to competitive motorsport."
+  tagline = "Data in. Performance out."
+  author = "Amador Pahim"
+  githubURL = "https://github.com/apahim/boxbox"
+  boxboxURL = "https://boxbox.pahim.org"
+  linkedinURL = "https://www.linkedin.com/in/amadorpahim"
+
+[menus]
+  [[menus.main]]
+    name = 'Dashboard'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'BoxBox'
+    pageRef = '/boxbox'
+    weight = 20
+  [[menus.main]]
+    name = 'The Program'
+    pageRef = '/about'
+    weight = 30
+  [[menus.main]]
+    name = 'Partnerships'
+    pageRef = '/partnerships'
+    weight = 40

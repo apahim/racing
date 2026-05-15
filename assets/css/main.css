@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(238, 0, 0, 0.3);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .terminal-window {
+    @apply bg-surface border border-subtle rounded-lg overflow-hidden;
+  }
+
+  .terminal-bar {
+    @apply flex items-center gap-2 px-4 py-3 bg-obsidian border-b border-subtle;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-body {
+    @apply p-5 font-mono text-sm leading-relaxed overflow-x-auto;
+  }
+
+  .status-card {
+    @apply bg-surface border border-subtle rounded-lg p-6 relative overflow-hidden;
+  }
+
+  .status-card::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-px;
+    background: linear-gradient(90deg, transparent, rgba(238, 0, 0, 0.3), transparent);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px rgba(238, 0, 0, 0.08);
+  }
+
+  .tier-card {
+    @apply bg-surface border border-subtle rounded-lg p-8 flex flex-col relative;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .tier-card:hover {
+    @apply border-redhat/30;
+    box-shadow: 0 0 30px rgba(238, 0, 0, 0.06);
+  }
+
+  .tier-card.featured {
+    @apply border-redhat/50;
+    box-shadow: 0 0 40px rgba(238, 0, 0, 0.1);
+  }
+
+  .btn-primary {
+    @apply inline-block px-6 py-3 bg-redhat text-white font-mono text-sm tracking-wider
+           rounded transition-all duration-200 hover:bg-red-700 hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply inline-block px-6 py-3 border border-redhat/50 text-redhat font-mono text-sm
+           tracking-wider rounded transition-all duration-200 hover:bg-redhat/10;
+  }
+
+  .section-label {
+    @apply font-mono text-xs tracking-[0.2em] text-redhat uppercase mb-2;
+  }
+
+  .section-title {
+    @apply font-mono text-2xl md:text-3xl font-bold text-white mb-4;
+  }
+}

@@ -1,0 +1,173 @@
+{{ define "main" }}
+
+<section class="pt-20 pb-16">
+  <div class="max-w-6xl mx-auto px-6">
+    <span class="section-label">// Strategic Alignment</span>
+    <h1 class="font-mono text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+      PARTNERSHIP ALIGNMENT
+    </h1>
+    <p class="text-slate text-lg max-w-2xl">
+      We deliver precision brand integration, not logo placement.
+      Every partnership is a technical case study with measurable ROI.
+    </p>
+  </div>
+</section>
+
+<section class="pb-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {{ partial "tier-card.html" (dict
+        "index" "0"
+        "name" "APEX PARTNER"
+        "tagline" "Title Partnership. Limited to 1."
+        "price" "6,500"
+        "featured" true
+        "deliverables" (slice
+          "Primary kart branding: side pods, front fairing"
+          "Naming rights: \"Pahim Racing [Company] Edition\""
+          "Executive keynote on performance engineering parallels"
+          "Exclusive 4K documentary-style technical feature"
+          "Chest of suit and team trailer branding"
+        )
+      ) }}
+
+      {{ partial "tier-card.html" (dict
+        "index" "1"
+        "name" "KINETIC PARTNER"
+        "tagline" "Primary Visibility."
+        "price" "3,000"
+        "featured" false
+        "deliverables" (slice
+          "Rear bumper, suit shoulders, helmet branding"
+          "Monthly LinkedIn \"System Update\" integration"
+          "Raw high-resolution photography access"
+          "Brand-tagged data-driven content for your marketing"
+        )
+      ) }}
+
+      {{ partial "tier-card.html" (dict
+        "index" "2"
+        "name" "TELEMETRY PARTNER"
+        "tagline" "Technical Integration."
+        "price" "1,500"
+        "featured" false
+        "deliverables" (slice
+          "Nassau panel (front of kart) branding"
+          "GitHub README credit in the boxbox project"
+          "Association with the data and automation stack"
+          "Ideal for SaaS, tooling, and cybersecurity firms"
+        )
+      ) }}
+
+      {{ partial "tier-card.html" (dict
+        "index" "3"
+        "name" "THE 500 CLUB"
+        "tagline" "Founding Patron."
+        "price" "500"
+        "featured" false
+        "deliverables" (slice
+          "Name and logo on the Supporter Wall"
+          "Signed framed photograph"
+          "End-of-season technical Annual Report"
+          "Founding Partner recognition across all channels"
+        )
+      ) }}
+
+    </div>
+  </div>
+</section>
+
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16">
+
+      <div>
+        <span class="section-label">// Value Proposition</span>
+        <h2 class="section-title">Why Partner With An Engineer?</h2>
+        <div class="space-y-6">
+          <div>
+            <h3 class="font-mono text-sm font-bold text-white mb-2">Corporate-Grade Reliability</h3>
+            <p class="text-slate text-sm leading-relaxed">
+              Managed by a Senior Principal Engineer at Red Hat. This campaign operates
+              with the same discipline, documentation, and delivery cadence as enterprise
+              software&mdash;because that is exactly how it is run.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-mono text-sm font-bold text-white mb-2">Data-Driven Content Assets</h3>
+            <p class="text-slate text-sm leading-relaxed">
+              Every race produces telemetry data, high-resolution photography, and technical
+              analysis. Partners receive production-quality content they can deploy directly
+              into their own B2B marketing and employee engagement programs.
+            </p>
+          </div>
+          <div>
+            <h3 class="font-mono text-sm font-bold text-white mb-2">The Control Environment</h3>
+            <p class="text-slate text-sm leading-relaxed">
+              The Tillotson T4 is a sealed-engine, mono-brand class. Victory is not purchased
+              with a larger budget&mdash;it is engineered through superior data analysis and
+              driver optimization. Your brand aligns with meritocracy, not spending.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="section-label">// Beta Phase</span>
+        <h2 class="section-title">The Founding Partner Advantage</h2>
+        <p class="text-slate leading-relaxed mb-6">
+          2027 is the inaugural deployment. This is the beta phase&mdash;and that is the
+          strategic advantage for early partners.
+        </p>
+        <p class="text-slate leading-relaxed mb-6">
+          Founding Partners receive outsized visibility during the highest-engagement phase
+          of the program: the documented journey from zero to competitive. This is the
+          narrative arc that resonates with corporate audiences&mdash;a relatable "hero's journey"
+          built on data, discipline, and transparent iteration.
+        </p>
+        <p class="text-slate leading-relaxed mb-8">
+          Every breakthrough, every delta improvement, every technical insight is attributed
+          back to the ecosystem that made it possible.
+        </p>
+        <div class="terminal-window">
+          <div class="terminal-body text-sm">
+            <div class="text-muted font-mono">$ pahim-racing --status founding-partners</div>
+            <div class="mt-3 font-mono">
+              <span class="text-white">Apex Partner:</span>
+              <span class="text-yellow-500 ml-2">1 SLOT AVAILABLE</span>
+            </div>
+            <div class="font-mono">
+              <span class="text-white">Kinetic Partners:</span>
+              <span class="text-green-400 ml-2">ACCEPTING</span>
+            </div>
+            <div class="font-mono">
+              <span class="text-white">Telemetry Partners:</span>
+              <span class="text-green-400 ml-2">ACCEPTING</span>
+            </div>
+            <div class="font-mono">
+              <span class="text-white">500 Club:</span>
+              <span class="text-green-400 ml-2">ACCEPTING</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="font-mono text-2xl font-bold text-white mb-4">Schedule a Technical Briefing</h2>
+    <p class="text-slate max-w-xl mx-auto mb-8">
+      We treat every partnership inquiry as a technical consultation.
+      Let's explore mutual alignment.
+    </p>
+    <a href="mailto:racing@pahim.org?subject=Partnership Inquiry" class="btn-primary">
+      Initiate Contact &rarr;
+    </a>
+  </div>
+</section>
+
+{{ end }}
