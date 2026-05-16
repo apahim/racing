@@ -163,28 +163,33 @@
     <div class="grid md:grid-cols-2 gap-16 items-start mb-16">
 
       <div>
-        <span class="section-label">// The Tool</span>
-        <h2 class="section-title">BoxBox</h2>
+        <span class="section-label">// Data Acquisition</span>
+        <h2 class="section-title">Data Acquisition</h2>
         <p class="text-slate leading-relaxed mb-6">
-          Rental karts have no onboard telemetry. No data logger, no lap timer,
-          no sensors. Most drivers leave the track with nothing but a feeling.
-          <span class="text-white font-semibold">BoxBox</span> changes that &mdash;
-          it turns consumer hardware (a GoPro or a phone running RaceChrono) into
-          a full telemetry pipeline, extracting performance data from sources that
-          were never designed to produce it.
+          Rental karts have no onboard telemetry. To fill that gap, the preparation
+          phase uses a <span class="text-white font-semibold">RaceBox Mini</span> GPS
+          receiver paired with <span class="text-white font-semibold">RaceChrono Pro</span>
+          &mdash; a dedicated data acquisition stack that provides live lap timing,
+          sector splits, and racing line recording during every session. The RaceBox
+          Mini&rsquo;s 25Hz GPS delivers the precision that phone GPS cannot: accurate
+          enough to measure braking points, apex positioning, and corner speed differentials.
         </p>
         <p class="text-slate leading-relaxed mb-6">
-          Upload a GoPro MP4 or a RaceChrono CSV export, and BoxBox delivers an
-          interactive analytical dashboard: lap time progression with outlier detection,
-          sector breakdowns, racing line comparison on satellite imagery, corner-by-corner
-          analysis with root-cause classification, and automated coaching insights.
-          Every session becomes a structured dataset, not a memory.
+          After each session, the recorded telemetry is imported into
+          <span class="text-white font-semibold">BoxBox</span>, a custom-built analysis
+          dashboard that turns raw RaceChrono data into actionable insights: lap time
+          progression, racing line comparison on satellite imagery, corner-by-corner
+          root-cause classification, and automated coaching feedback. Every session
+          becomes a structured dataset, not a memory.
         </p>
         <p class="text-slate leading-relaxed mb-6">
-          This is the <span class="text-white font-semibold">technological bridge
-          between preparation and competition</span>. The same analytical discipline
-          and data literacy built here with BoxBox carries directly into championship
-          racing with the Alfano 7 professional data logger.
+          BoxBox also supports GoPro video as a telemetry source &mdash; extracting
+          GPS and timing data directly from MP4 files. This makes deep session analysis
+          accessible to any rental kart driver with a GoPro, no specialized hardware
+          required. For the campaign, it&rsquo;s a fallback when the RaceBox isn&rsquo;t
+          available. For the community, it&rsquo;s the entry point. The analytical
+          discipline built here carries directly into championship racing with the
+          Alfano 7 professional data logger.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="https://boxbox.pahim.org" target="_blank" rel="noopener" class="btn-primary">
@@ -197,6 +202,12 @@
       </div>
 
       <div>
+        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-6 cursor-zoom-in lightbox-trigger" data-src="/img/racechrono-live.webp">
+          <img src="/img/racechrono-live.webp" alt="RaceChrono Pro live timing during a rental kart session" class="w-full h-auto">
+        </div>
+        <p class="font-mono text-xs text-muted mt-3 mb-8 tracking-wider">
+          RaceChrono Pro live timing powered by RaceBox Mini 25Hz GPS
+        </p>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger" data-src="/img/boxbox-overview.webp">
           <img src="/img/boxbox-overview.webp" alt="BoxBox session overview dashboard" class="w-full h-auto">
         </div>
