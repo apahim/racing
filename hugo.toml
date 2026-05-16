@@ -31,7 +31,7 @@ title = 'Pahim Racing'
     weight = 10
   [[menus.main]]
     name = 'The Program'
-    pageRef = '/about'
+    pageRef = '/program'
     weight = 20
   [[menus.main]]
     name = 'Foundation'
