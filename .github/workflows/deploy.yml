@@ -35,11 +35,11 @@ jobs:
           overwrite: true
           rm: true
 
-      - name: Reload Caddy
+      - name: Restart Caddy
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.DROPLET_HOST }}
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
-            docker exec boxbox-caddy-1 caddy reload --config /etc/caddy/Caddyfile
+            docker restart boxbox-caddy-1
