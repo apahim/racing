@@ -17,7 +17,7 @@
       </a>
     </div>
 
-    <button id="menu-toggle" class="md:hidden text-slate hover:text-white" aria-label="Menu">
+    <button id="menu-toggle" class="md:hidden text-slate hover:text-white" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path id="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
           d="M4 6h16M4 12h16M4 18h16" />
@@ -27,7 +27,7 @@
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden border-t border-subtle bg-obsidian/95 backdrop-blur-md">
+  <div id="mobile-menu" class="md:hidden border-t border-subtle bg-obsidian/95 backdrop-blur-md mobile-menu">
     <div class="px-6 py-4 flex flex-col gap-4">
       {{ range site.Menus.main }}
       <a href="{{ .URL }}"
@@ -44,12 +44,31 @@
 </nav>
 
 <script>
-  document.getElementById('menu-toggle').addEventListener('click', function () {
+  (function() {
+    var toggle = document.getElementById('menu-toggle');
     var menu = document.getElementById('mobile-menu');
     var open = document.getElementById('menu-open');
     var close = document.getElementById('menu-close');
-    menu.classList.toggle('hidden');
-    open.classList.toggle('hidden');
-    close.classList.toggle('hidden');
-  });
+
+    function toggleMenu() {
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('menu-open');
+      open.classList.toggle('hidden');
+      close.classList.toggle('hidden');
+    }
+
+    function closeMenu() {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('menu-open');
+      open.classList.remove('hidden');
+      close.classList.add('hidden');
+    }
+
+    toggle.addEventListener('click', toggleMenu);
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeMenu();
+    });
+  })();
 </script>

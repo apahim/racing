@@ -78,4 +78,44 @@
   .section-title {
     @apply font-mono text-2xl md:text-3xl font-bold text-white mb-4;
   }
+
+  .btn-primary:focus-visible,
+  .btn-outline:focus-visible {
+    outline: 2px solid #E07020;
+    outline-offset: 2px;
+  }
+
+  a.tier-card:focus-visible,
+  a.status-card:focus-visible {
+    outline: 2px solid #E07020;
+    outline-offset: 2px;
+  }
+
+  .screenshot-glow {
+    box-shadow: 0 0 25px rgba(224, 112, 32, 0.12), 0 0 50px rgba(224, 112, 32, 0.04);
+    border: 1px solid rgba(224, 112, 32, 0.15);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .screenshot-glow:hover {
+    box-shadow: 0 0 30px rgba(224, 112, 32, 0.18), 0 0 60px rgba(224, 112, 32, 0.06);
+    border-color: rgba(224, 112, 32, 0.25);
+  }
+
+  .mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 200ms ease;
+  }
+
+  .mobile-menu.menu-open {
+    max-height: 20rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
