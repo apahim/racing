@@ -42,5 +42,4 @@ jobs:
           username: ${{ secrets.DROPLET_USER }}
           key: ${{ secrets.DROPLET_SSH_KEY }}
           script: |
-            cd ~/boxbox
-            docker compose -f docker-compose.prod.yml exec caddy caddy reload --config /etc/caddy/Caddyfile
+            docker exec boxbox-caddy-1 caddy reload --config /etc/caddy/Caddyfile
