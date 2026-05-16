@@ -3,32 +3,74 @@
     <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
 
       <div class="order-2 md:order-1">
+        {{- $sc := site.Data.scorecard -}}
         <div class="terminal-window glow-border">
           <div class="terminal-bar">
             <span class="terminal-dot bg-accent"></span>
             <span class="terminal-dot bg-yellow-500"></span>
             <span class="terminal-dot bg-green-500"></span>
-            <span class="font-mono text-xs text-muted ml-2">boxbox &mdash; session analysis</span>
+            <span class="font-mono text-xs text-muted ml-2">preparation scorecard</span>
           </div>
           <div class="terminal-body text-slate">
-            <div class="flex justify-between">
-              <span class="text-muted">First Session</span>
-              <span class="text-white font-bold">1:13.070</span>
+
+            <div class="flex justify-between items-center mb-5">
+              <span class="font-mono text-xs text-muted tracking-wider">{{ now.Format "02 Jan 2006" }}</span>
+              <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-green-400 text-xs tracking-wider">tracking</span>
+              </span>
             </div>
-            <div class="flex justify-between mt-2">
-              <span class="text-muted">Current Best</span>
-              <span class="text-white font-bold">1:09.443</span>
-            </div>
-            <div class="mt-4 pt-3 border-t border-subtle">
-              <div class="flex justify-between">
-                <span class="text-muted">Improvement</span>
-                <span class="text-green-400 font-bold text-lg">-3.627s</span>
+
+            {{- $wPct := math.Round (mul (div (sub $sc.weight.start $sc.weight.current | float) (sub $sc.weight.start $sc.weight.target | float)) 100) -}}
+            <div class="mb-4">
+              <div class="flex justify-between items-baseline mb-1.5">
+                <span class="text-muted text-xs uppercase tracking-wider">Weight</span>
+                <span class="text-xs"><span class="text-white font-bold">{{ $sc.weight.current }}</span><span class="text-muted"> kg</span> <span class="text-muted">&rarr;</span> <span class="text-muted">{{ $sc.weight.target }} kg</span></span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
               </div>
             </div>
-            <div class="mt-4 flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              <span class="text-green-400 text-xs tracking-wider">Progression active</span>
+
+            {{- $rPct := math.Round (mul (div (sub $sc.rhr.start $sc.rhr.current | float) (sub $sc.rhr.start $sc.rhr.target | float)) 100) -}}
+            <div class="mb-4">
+              <div class="flex justify-between items-baseline mb-1.5">
+                <span class="text-muted text-xs uppercase tracking-wider">Resting HR</span>
+                <span class="text-xs"><span class="text-white font-bold">{{ $sc.rhr.current }}</span><span class="text-muted"> bpm</span> <span class="text-muted">&rarr;</span> <span class="text-muted">{{ $sc.rhr.target }} bpm</span></span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
+              </div>
             </div>
+
+            {{- $kPct := math.Round (mul (div (float $sc.kartsim.current) (float $sc.kartsim.target)) 100) -}}
+            <div class="mb-5">
+              <div class="flex justify-between items-baseline mb-1.5">
+                <span class="text-muted text-xs uppercase tracking-wider">KartSim</span>
+                <span class="text-xs"><span class="text-white font-bold">{{ lang.FormatNumber 0 $sc.kartsim.current }}</span><span class="text-muted"> h</span> <span class="text-muted">&rarr;</span> <span class="text-muted">{{ lang.FormatNumber 0 $sc.kartsim.target }} h</span></span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $kPct }}%"></div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-subtle">
+              <span class="text-muted text-xs uppercase tracking-wider">Track Laps</span>
+              <div class="mt-2.5 space-y-2">
+                {{- range $sc.tracks -}}
+                {{- $tPct := math.Round (mul (div (float .laps) (float .target)) 100) -}}
+                {{- $exceeded := gt $tPct 100 -}}
+                <div class="flex items-center gap-3">
+                  <span class="text-xs text-slate w-28 truncate">{{ .name }}</span>
+                  <div class="progress-track flex-1">
+                    <div class="progress-fill {{ if $exceeded }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $tPct }}%"></div>
+                  </div>
+                  <span class="text-xs tabular-nums w-16 text-right {{ if $exceeded }}text-green-400{{ else }}text-muted{{ end }}">{{ .laps }}/{{ .target }}</span>
+                </div>
+                {{- end }}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -50,7 +92,7 @@
         </div>
         <div class="flex flex-wrap gap-4 mt-8">
           <a href="/program/" class="btn-primary">The Program</a>
-          <a href="/partnerships" class="btn-outline">Partnership Alignment</a>
+          <a href="/partnerships/" class="btn-outline">Partnership Alignment</a>
         </div>
       </div>
 

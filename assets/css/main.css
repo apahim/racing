@@ -113,6 +113,14 @@
     background: linear-gradient(90deg, transparent, rgba(241, 191, 0, 0.3), rgba(170, 21, 27, 0.2), transparent);
   }
 
+  .progress-track {
+    @apply bg-subtle rounded-full h-1.5 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-300;
+  }
+
   .screenshot-glow {
     box-shadow: 0 0 25px rgba(224, 112, 32, 0.12), 0 0 50px rgba(224, 112, 32, 0.04);
     border: 1px solid rgba(224, 112, 32, 0.15);
