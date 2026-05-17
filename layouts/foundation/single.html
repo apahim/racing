@@ -12,7 +12,7 @@
     <p class="text-slate text-lg max-w-3xl">
       Before competing at championship level, every element requires dedicated preparation.
       The foundation phase runs from August 2025 through December 2026: physical,
-      technical, and technological preparation executed in parallel.
+      technical and technological preparation executed in parallel.
     </p>
   </div>
 </section>
@@ -26,7 +26,7 @@
         <span class="section-label">// The Driver</span>
         <h2 class="section-title">Driver Preparation</h2>
         <p class="text-slate leading-relaxed mb-6">
-          A competitive kart driver is a system: physical, cognitive, and physiological
+          A competitive kart driver is a system: physical, cognitive and physiological
           subsystems that must perform together under sustained stress. There is no power
           steering, no power brakes, no traction control. Every input is a direct physical
           output from the driver. Preparing that system requires
@@ -38,11 +38,11 @@
         </p>
         <p class="text-slate leading-relaxed mb-6">
           Physical capacity is only half the system. <span class="text-white font-semibold">Reaction
-          time</span> under fatigue separates competitive drivers from fast ones &mdash; race
-          starts, late-braking overtakes, and split-second gap decisions happen deep into
+          time</span> under fatigue separates competitive drivers from fast ones. Race
+          starts, late-braking overtakes and split-second gap decisions happen deep into
           physically demanding sessions. <span class="text-white font-semibold">Mental
           conditioning</span> ties it together: managing focus across a full race day, controlling
-          adrenaline on the grid, resetting composure after an incident, and maintaining
+          adrenaline on the grid, resetting composure after an incident and maintaining
           discipline when the instinct is to overdrive.
         </p>
         <div class="space-y-3">
@@ -65,8 +65,8 @@
             <span class="text-slate text-sm">
               {{- $w := site.Data.scorecard.weight -}}
               <span class="text-white font-semibold">Weight management</span>:
-              {{ $w.start }}kg to {{ $w.current }}kg since August 2025 &mdash; every kilogram above the 168kg class
-              minimum is a competitive penalty in acceleration, braking, and cornering
+              {{ $w.start }}kg to {{ $w.current }}kg since August 2025. Every kilogram above the 168kg class
+              minimum is a competitive penalty in acceleration, braking and cornering
             </span>
           </div>
         </div>
@@ -77,33 +77,37 @@
           <img src="/img/body.webp" alt="Physical transformation" class="w-full h-auto">
         </div>
         {{- $w := site.Data.scorecard.weight -}}
-        <div class="grid grid-cols-3 gap-3 sm:gap-4">
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">Start</p>
-            <p class="font-mono text-2xl font-bold text-white">{{ $w.start }}<span class="text-sm text-slate">kg</span></p>
-          </div>
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">Current</p>
-            <p class="font-mono text-2xl font-bold text-green-400">{{ $w.current }}<span class="text-sm text-slate">kg</span></p>
-          </div>
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">Delta</p>
-            <p class="font-mono text-2xl font-bold text-accent">-{{ sub (int $w.start) (int $w.current) }}<span class="text-sm text-slate">kg</span></p>
+        {{- $wPct := math.Round (mul (div (sub $w.start $w.current | float) (sub $w.start $w.target | float)) 100) -}}
+        <div class="mb-4 pb-4 border-b border-subtle">
+          <span class="text-muted text-xs uppercase tracking-wider block mb-2">Weight</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $w.start }} kg</span>
+            <div class="flex-1">
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
+              </div>
+              <div style="width: {{ math.Min 100 $wPct }}%">
+                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $w.current }} kg</span>
+              </div>
+            </div>
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $w.target }} kg</span>
           </div>
         </div>
         {{- $r := site.Data.scorecard.rhr -}}
-        <div class="grid grid-cols-3 gap-3 sm:gap-4 mt-3">
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">RHR Start</p>
-            <p class="font-mono text-2xl font-bold text-white">{{ $r.start }}<span class="text-sm text-slate">bpm</span></p>
-          </div>
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">RHR Current</p>
-            <p class="font-mono text-2xl font-bold text-green-400">{{ $r.current }}<span class="text-sm text-slate">bpm</span></p>
-          </div>
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">RHR Delta</p>
-            <p class="font-mono text-2xl font-bold text-accent">-{{ sub (int $r.start) (int $r.current) }}<span class="text-sm text-slate">bpm</span></p>
+        {{- $rPct := math.Round (mul (div (sub $r.start $r.current | float) (sub $r.start $r.target | float)) 100) -}}
+        <div>
+          <span class="text-muted text-xs uppercase tracking-wider block mb-2">Resting HR</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $r.start }} bpm</span>
+            <div class="flex-1">
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
+              </div>
+              <div style="width: {{ math.Min 100 $rPct }}%">
+                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $r.current }} bpm</span>
+              </div>
+            </div>
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $r.target }} bpm</span>
           </div>
         </div>
       </div>
@@ -142,7 +146,7 @@
         <p class="text-slate leading-relaxed mb-6">
           No amount of data or conditioning substitutes for the neural pathways built
           through repetition on track. Braking references, spatial awareness in traffic,
-          the feel of a kart rotating under load &mdash; these are learned through laps,
+          the feel of a kart rotating under load. These are learned through laps,
           not theory. Seat time is the irreplaceable variable.
         </p>
         <p class="text-slate leading-relaxed mb-6">
@@ -150,7 +154,7 @@
           abroad serve as the training ground. Each layout develops different skills:
           fast, flowing circuits demand commitment and peripheral vision at speed, tight
           technical tracks reward braking precision and patience, and elevation changes
-          expose kart balance and throttle sensitivity. The variety is deliberate &mdash;
+          expose kart balance and throttle sensitivity. The variety is deliberate:
           a driver who can adapt quickly to an unfamiliar circuit carries that adaptability
           into championship weekends.
         </p>
@@ -168,15 +172,15 @@
             <span class="text-slate text-sm">
               <span class="text-white font-semibold">Track adaptation</span>: quickly identifying
               braking references on a new circuit, adjusting to different grip levels, reading
-              surface conditions, and adapting to camber and elevation changes
+              surface conditions and adapting to camber and elevation changes
             </span>
           </div>
           <div class="flex items-baseline gap-3">
             <span class="text-accent font-mono text-sm">&rsaquo;</span>
             <span class="text-slate text-sm">
               <span class="text-white font-semibold">Consistency</span>: a fast lap means nothing
-              without repeatable execution &mdash; the target is sub-0.1s variance under race
-              conditions: traffic, pressure, and tire degradation
+              without repeatable execution. The target is sub-0.1s variance under race
+              conditions: traffic, pressure and tire degradation
             </span>
           </div>
         </div>
@@ -199,21 +203,21 @@
           Rental karts have no onboard telemetry. To fill that gap, the preparation
           phase uses a <span class="text-white font-semibold">RaceBox Mini</span> GPS
           receiver paired with <span class="text-white font-semibold">RaceChrono Pro</span>
-          &mdash; a dedicated data acquisition stack that provides live lap timing,
-          sector splits, and racing line recording during every session. The RaceBox
+          to create a dedicated data acquisition stack that provides live lap timing,
+          sector splits and racing line recording during every session. The RaceBox
           Mini&rsquo;s 25Hz GPS delivers the precision that phone GPS cannot: accurate
-          enough to measure braking points, apex positioning, and corner speed differentials.
+          enough to measure braking points, apex positioning and corner speed differentials.
         </p>
         <p class="text-slate leading-relaxed mb-6">
           After each session, the recorded telemetry is imported into
           <span class="text-white font-semibold">BoxBox</span>, a custom-built analysis
           dashboard that turns raw RaceChrono data into actionable insights: lap time
           progression, racing line comparison on satellite imagery, corner-by-corner
-          root-cause classification, and automated coaching feedback. Every session
+          root-cause classification and automated coaching feedback. Every session
           becomes a structured dataset, not a memory.
         </p>
         <p class="text-slate leading-relaxed mb-6">
-          BoxBox also supports GoPro video as a telemetry source &mdash; extracting
+          BoxBox also supports GoPro video as a telemetry source, extracting
           GPS and timing data directly from MP4 files. This makes deep session analysis
           accessible to any rental kart driver with a GoPro, no specialized hardware
           required. For the campaign, it&rsquo;s a fallback when the RaceBox isn&rsquo;t
@@ -259,8 +263,8 @@
         <h4 class="font-mono text-sm font-bold text-white mb-2">Racing Line Comparison</h4>
         <p class="text-slate text-sm leading-relaxed">
           Overlay any two laps on satellite imagery with speed-coded color traces.
-          Identify exactly where time is gained or lost spatially &mdash; a wider
-          entry, a tighter apex, a later throttle application &mdash; with animated
+          Identify exactly where time is gained or lost spatially: a wider
+          entry, a tighter apex, a later throttle application. Includes animated
           playback and live cumulative delta.
         </p>
       </div>
@@ -309,7 +313,7 @@
           Physical seat time is complemented by thousands of hours in
           <span class="text-white font-semibold">KartSim</span>, racing the Tillotson T4
           kart across circuits throughout Europe and the UK. Sim training builds track
-          knowledge before arrival &mdash; braking points, racing lines, and corner sequences
+          knowledge before arrival. Braking points, racing lines and corner sequences
           are internalized before the first real session on an unfamiliar circuit.
         </p>
         <div class="space-y-3">
@@ -332,7 +336,7 @@
             <span class="text-accent font-mono text-sm">&rsaquo;</span>
             <span class="text-slate text-sm">
               <span class="text-white font-semibold">Race conditions</span>: AI traffic,
-              variable grip, and race-start practice &mdash; racecraft training without
+              variable grip and race-start practice. Racecraft training without
               the cost of a physical session
             </span>
           </div>
@@ -348,18 +352,19 @@
         </p>
         {{- $k := site.Data.scorecard.kartsim -}}
         {{- $kPct := math.Round (mul (div (float $k.current) (float $k.target)) 100) -}}
-        <div class="grid grid-cols-3 gap-3 sm:gap-4 mt-6">
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">Current</p>
-            <p class="font-mono text-2xl font-bold text-white">{{ lang.FormatNumber 0 $k.current }}<span class="text-sm text-slate">h</span></p>
-          </div>
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">Target</p>
-            <p class="font-mono text-2xl font-bold text-accent">{{ lang.FormatNumber 0 $k.target }}<span class="text-sm text-slate">h</span></p>
-          </div>
-          <div class="status-card text-center">
-            <p class="font-mono text-xs text-muted uppercase tracking-wider mb-1">Progress</p>
-            <p class="font-mono text-2xl font-bold text-green-400">{{ $kPct }}<span class="text-sm text-slate">%</span></p>
+        <div class="mt-6">
+          <span class="text-muted text-xs uppercase tracking-wider block mb-2">KartSim</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14">0 h</span>
+            <div class="flex-1">
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $kPct }}%"></div>
+              </div>
+              <div style="width: {{ math.Min 100 $kPct }}%">
+                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ lang.FormatNumber 0 $k.current }} h</span>
+              </div>
+            </div>
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ lang.FormatNumber 0 $k.target }} h</span>
           </div>
         </div>
       </div>
@@ -368,7 +373,7 @@
   </div>
 </section>
 
-<!-- Back to Program -->
+<!-- Navigation -->
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="font-mono text-2xl font-bold text-white mb-4">Next Phase</h2>
