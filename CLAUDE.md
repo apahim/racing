@@ -17,7 +17,6 @@ npm run build        # production build to public/
 - `content/` — page content as front-matter-only Markdown files (content lives in custom layouts)
 - `layouts/` — Hugo templates: `_default/baseof.html` is the shell, `index.html` is the homepage
 - `layouts/partials/` — reusable components: nav, hero, footer, head, system-status, tier-card
-- `layouts/about/single.html` — The Program overview hub (mission, phase cards, timeline, founder)
 - `layouts/foundation/single.html` — Phase 1: Foundation (physical, track, BoxBox sections)
 - `layouts/competition/single.html` — Phase 2: Competition (campaign, team, telemetry, control env)
 - `layouts/partnerships/single.html` — partnership tiers and value proposition
@@ -56,11 +55,12 @@ npm run build        # production build to public/
 
 The site follows a phased campaign narrative:
 
-- **Dashboard** (`/`) — homepage with hero, system status, program summary, telemetry preview, partnerships CTA
-- **Foundation** (`/foundation/`) — Phase 1 detail: physical optimization (119→89kg), track development, BoxBox telemetry
-- **Competition** (`/competition/`) — Phase 2 detail: T4 championship, Stapleton Motorsport, Alfano 7 telemetry
-- **The Program** (`/about/`) — overview hub linking to phase pages, campaign timeline, Phase 3 "what's next", founder
+- **Dashboard** (`/`) — homepage with hero scorecard, The Playbook (methodology + phase cards), founder bio, partnerships CTA
+- **Foundation** (`/foundation/`) — Phase 1 detail: physical optimization (119→89kg), track development, BoxBox telemetry, KartSim
+- **Competition** (`/competition/`) — Phase 2 detail: T4 championship, Stapleton Motorsport, Alfano 7 telemetry, race calendar
 - **Partnerships** (`/partnerships/`) — partnership tiers (Apex, Grid Partner, Supporter)
+
+User flow: Dashboard → Foundation → Competition → Partnerships (linear narrative).
 
 Nav also includes an external link to [boxbox.pahim.org](https://boxbox.pahim.org).
 

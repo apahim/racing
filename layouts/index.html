@@ -2,80 +2,182 @@
 
 {{ partial "hero.html" . }}
 
+<!-- The Playbook -->
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-16">
+    <span class="section-label">// The Playbook</span>
+    <h2 class="section-title">The Playbook</h2>
+    <p class="text-slate leading-relaxed max-w-3xl mb-10">
+      The 2027 Tillotson T4 Ireland Championship is treated as a structured performance
+      challenge: measurable inputs, testable hypotheses, quantifiable outputs. The same
+      discipline used to deliver enterprise-scale platforms &mdash;
+      <span class="text-white font-semibold">data-driven iteration, root cause analysis,
+      observable systems</span> &mdash; applied to competitive motorsport.
+    </p>
 
-      <div>
-        <span class="section-label">// Methodology</span>
-        <h2 class="section-title">The Approach</h2>
-        <p class="text-slate leading-relaxed">
-          Pahim Racing treats the 2027 Tillotson T4 Ireland Championship as a structured performance challenge.
-          By applying the same discipline used to deliver enterprise-scale projects (data-driven iteration,
-          root cause analysis, and measurable KPIs) we aim to demonstrate that engineering methodology
-          outperforms intuition on the track.
+    <div class="grid md:grid-cols-2 gap-8 mt-8">
+
+      {{- $sc := site.Data.scorecard -}}
+      {{- $wPct := math.Min 100 (math.Round (mul (div (sub $sc.weight.start $sc.weight.current | float) (sub $sc.weight.start $sc.weight.target | float)) 100)) -}}
+      {{- $rPct := math.Min 100 (math.Round (mul (div (sub $sc.rhr.start $sc.rhr.current | float) (sub $sc.rhr.start $sc.rhr.target | float)) 100)) -}}
+      {{- $kPct := math.Min 100 (math.Round (mul (div (float $sc.kartsim.current) (float $sc.kartsim.target)) 100)) -}}
+      {{- $tTotal := 0.0 -}}
+      {{- range $sc.tracks -}}
+        {{- $tTotal = add $tTotal (math.Min 100 (math.Round (mul (div (float .laps) (float .target)) 100))) -}}
+      {{- end -}}
+      {{- $tPct := math.Round (div $tTotal (len $sc.tracks)) -}}
+      {{- $avg := math.Round (div (add (add (add $wPct $rPct) $kPct) $tPct) 4) -}}
+
+      <a href="/foundation/" class="tier-card group block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-mono text-xs text-white tracking-wider">PHASE 1: FOUNDATION</span>
+          <span class="font-mono text-xs text-green-400 tracking-wider">ACTIVE</span>
+        </div>
+        <h3 class="font-mono text-lg font-bold text-white mb-3">Preparation</h3>
+        <p class="text-slate text-sm leading-relaxed mb-6">
+          Physical, technical, and technological preparation for championship-level
+          competition. August 2025 through December 2026.
         </p>
-        <a href="/program/" class="inline-block mt-6 font-mono text-sm text-accent hover:underline tracking-wider">
-          Read The Program &rarr;
-        </a>
-        <a href="/foundation/" class="inline-block mt-2 font-mono text-sm text-accent hover:underline tracking-wider">
-          Phase 1: Foundation &rarr;
-        </a>
-      </div>
-
-      <div>
-        <span class="section-label">// BoxBox</span>
-        <h2 class="section-title">Preparation Telemetry</h2>
-        <div class="terminal-window">
-          <div class="terminal-bar">
-            <span class="terminal-dot bg-accent"></span>
-            <span class="terminal-dot bg-yellow-500"></span>
-            <span class="terminal-dot bg-green-500"></span>
-            <span class="font-mono text-xs text-muted ml-2">boxbox &mdash; telemetry pipeline</span>
+        <div class="space-y-2 mb-6">
+          <div class="flex items-baseline gap-2">
+            <span class="text-green-400 text-xs">&#9656;</span>
+            <span class="text-slate text-sm">Physical conditioning and weight optimization</span>
           </div>
-          <div class="terminal-body text-sm">
-            <div class="flex flex-col gap-3 font-mono">
-              <div class="flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-green-500 shrink-0"></span>
-                <span class="text-white">Session Capture</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-green-500 shrink-0"></span>
-                <span class="text-white">Data Extraction</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-green-500 shrink-0"></span>
-                <span class="text-white">Performance Analysis</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="w-2 h-2 rounded-full bg-green-500 shrink-0"></span>
-                <span class="text-green-400">Visual Overlay</span>
-              </div>
-            </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-green-400 text-xs">&#9656;</span>
+            <span class="text-slate text-sm">Track development across 4 championship circuits</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-green-400 text-xs">&#9656;</span>
+            <span class="text-slate text-sm">Data acquisition: BoxBox + RaceChrono</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-green-400 text-xs">&#9656;</span>
+            <span class="text-slate text-sm">KartSim simulation training</span>
           </div>
         </div>
-        <a href="/foundation/#data-acquisition" class="inline-block mt-6 font-mono text-sm text-accent hover:underline tracking-wider">
-          Explore boxbox &rarr;
-        </a>
-        <a href="{{ site.Params.boxboxURL }}" target="_blank" rel="noopener" class="inline-block mt-2 font-mono text-sm text-accent hover:underline tracking-wider">
-          Launch boxbox &nearr;
-        </a>
-      </div>
+        <div class="mt-auto pt-4 border-t border-subtle">
+          <div class="flex justify-between mb-1.5">
+            <span class="font-mono text-xs text-muted">Preparation</span>
+            <span class="font-mono text-xs text-accent">{{ $avg }}%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill bg-accent" style="width: {{ $avg }}%"></div>
+          </div>
+          <span class="font-mono text-sm text-accent group-hover:underline tracking-wider mt-4 block">
+            Explore Foundation &rarr;
+          </span>
+        </div>
+      </a>
 
+      <a href="/competition/" class="tier-card group block">
+        <div class="flex items-center justify-between mb-4">
+          <span class="font-mono text-xs text-white tracking-wider">PHASE 2: COMPETITION</span>
+          <span class="font-mono text-xs text-yellow-400 tracking-wider">SCHEDULED</span>
+        </div>
+        <h3 class="font-mono text-lg font-bold text-white mb-3">Championship Season</h3>
+        <p class="text-slate text-sm leading-relaxed mb-6">
+          T4 Ireland Championship rookie season with Stapleton Motorsport.
+          March through September 2027.
+        </p>
+        <div class="space-y-2 mb-6">
+          <div class="flex items-baseline gap-2">
+            <span class="text-yellow-400 text-xs">&#9675;</span>
+            <span class="text-slate text-sm">7 rounds across 4 circuits, March&ndash;September</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-yellow-400 text-xs">&#9675;</span>
+            <span class="text-slate text-sm">Stapleton Motorsport team and technical support</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-yellow-400 text-xs">&#9675;</span>
+            <span class="text-slate text-sm">Alfano 7 professional data acquisition</span>
+          </div>
+          <div class="flex items-baseline gap-2">
+            <span class="text-yellow-400 text-xs">&#9675;</span>
+            <span class="text-slate text-sm">Nations Cup international event, Valencia</span>
+          </div>
+        </div>
+        <div class="mt-auto pt-4 border-t border-subtle">
+          <div class="flex justify-between mb-1.5">
+            <span class="font-mono text-xs text-muted">Competition</span>
+            <span class="font-mono text-xs text-accent">0%</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill bg-accent" style="width: 0%"></div>
+          </div>
+          <span class="font-mono text-sm text-accent group-hover:underline tracking-wider mt-4 block">
+            Explore Competition &rarr;
+          </span>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="text-muted font-mono text-xs tracking-wider mt-8 text-center">
+      Phase 3: Post-season data review, driver optimization, and Year 2 strategy.
+    </p>
+  </div>
+</section>
+
+<!-- The Founder -->
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <div>
+        <span class="section-label">// The Founder</span>
+        <h2 class="section-title">Amador Pahim</h2>
+        <p class="text-slate leading-relaxed mb-6">
+          Senior Principal Software Engineer at Red Hat, specializing in OpenShift Managed Services Architecture and Development. The same methodology used to design and operate
+          enterprise-scale platforms (rigorous testing, observable systems, iterative
+          improvement) is applied to every aspect of this campaign.
+        </p>
+        <p class="text-slate leading-relaxed mb-6">
+          As Brazilian/Irish, Amador competed in a state karting championship in Brazil
+          as a teenager, racing two seasons in a 2-stroke IAME series that built the foundational
+          racecraft now being reactivated. A lifelong passion for racing, shaped by growing up
+          watching the great Senna, never left. Karting remained a constant through the years, but the
+          discovery of Ireland's Tillotson T4 Championship, a sealed-engine series where
+          engineering discipline outweighs budget, was the catalyst to return to serious
+          competition.
+        </p>
+        <div class="flex flex-wrap gap-6">
+          <a href="https://www.linkedin.com/in/amadorpahim" class="font-mono text-sm text-accent hover:underline tracking-wider">
+            LinkedIn &rarr;
+          </a>
+          <a href="https://boxbox.pahim.org" class="font-mono text-sm text-accent hover:underline tracking-wider">
+            BoxBox &rarr;
+          </a>
+          <a href="https://github.com/apahim/boxbox" class="font-mono text-sm text-accent hover:underline tracking-wider">
+            GitHub &rarr;
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow aspect-[3/4]">
+          <img src="/img/apahim.webp" alt="Amador Pahim" class="w-full h-full object-cover">
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Partnerships CTA -->
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6 text-center">
-    <span class="section-label">// Partnerships</span>
-    <h2 class="section-title">Partnerships</h2>
-    <p class="text-slate max-w-2xl mx-auto mb-8">
-      Corporate-grade reliability from a Senior Principal Engineer at Red Hat.
-      Data-driven content assets from every session. A sealed-engine championship
-      where results are engineered, not purchased. Three tiers from &euro;450.
+    <h2 class="font-mono text-2xl font-bold text-white mb-4">Interested in the Campaign?</h2>
+    <p class="text-slate max-w-xl mx-auto mb-8">
+      Structured partnership tiers from &euro;450. Corporate-grade reliability,
+      data-driven content, and measurable campaign exposure.
     </p>
-    <a href="/partnerships/" class="btn-primary">Explore Partnership Alignment &rarr;</a>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/partnerships/" class="btn-primary">
+        Partnership Alignment &rarr;
+      </a>
+      <a href="{{ site.Params.contactFormURL }}" target="_blank" rel="noopener" class="btn-outline">
+        Get In Touch &rarr;
+      </a>
+    </div>
   </div>
 </section>
 

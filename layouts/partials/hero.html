@@ -22,35 +22,53 @@
             </div>
 
             {{- $wPct := math.Round (mul (div (sub $sc.weight.start $sc.weight.current | float) (sub $sc.weight.start $sc.weight.target | float)) 100) -}}
-            <div class="mb-4">
-              <div class="flex justify-between items-baseline mb-1.5">
-                <span class="text-muted text-xs uppercase tracking-wider">Weight</span>
-                <span class="text-xs"><span class="text-white font-bold">{{ $sc.weight.current }}</span><span class="text-muted"> kg</span> <span class="text-muted">&rarr;</span> <span class="text-muted">{{ $sc.weight.target }} kg</span></span>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
+            <div class="mb-4 pb-4 border-b border-subtle">
+              <span class="text-muted text-xs uppercase tracking-wider block mb-2">Weight</span>
+              <div class="flex items-center gap-2.5">
+                <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $sc.weight.start }} kg</span>
+                <div class="flex-1">
+                  <div class="progress-track">
+                    <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
+                  </div>
+                  <div style="width: {{ math.Min 100 $wPct }}%">
+                    <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $sc.weight.current }} kg</span>
+                  </div>
+                </div>
+                <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $sc.weight.target }} kg</span>
               </div>
             </div>
 
             {{- $rPct := math.Round (mul (div (sub $sc.rhr.start $sc.rhr.current | float) (sub $sc.rhr.start $sc.rhr.target | float)) 100) -}}
-            <div class="mb-4">
-              <div class="flex justify-between items-baseline mb-1.5">
-                <span class="text-muted text-xs uppercase tracking-wider">Resting HR</span>
-                <span class="text-xs"><span class="text-white font-bold">{{ $sc.rhr.current }}</span><span class="text-muted"> bpm</span> <span class="text-muted">&rarr;</span> <span class="text-muted">{{ $sc.rhr.target }} bpm</span></span>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
+            <div class="mb-4 pb-4 border-b border-subtle">
+              <span class="text-muted text-xs uppercase tracking-wider block mb-2">Resting HR</span>
+              <div class="flex items-center gap-2.5">
+                <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $sc.rhr.start }} bpm</span>
+                <div class="flex-1">
+                  <div class="progress-track">
+                    <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
+                  </div>
+                  <div style="width: {{ math.Min 100 $rPct }}%">
+                    <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $sc.rhr.current }} bpm</span>
+                  </div>
+                </div>
+                <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $sc.rhr.target }} bpm</span>
               </div>
             </div>
 
             {{- $kPct := math.Round (mul (div (float $sc.kartsim.current) (float $sc.kartsim.target)) 100) -}}
             <div class="mb-5">
-              <div class="flex justify-between items-baseline mb-1.5">
-                <span class="text-muted text-xs uppercase tracking-wider">KartSim</span>
-                <span class="text-xs"><span class="text-white font-bold">{{ lang.FormatNumber 0 $sc.kartsim.current }}</span><span class="text-muted"> h</span> <span class="text-muted">&rarr;</span> <span class="text-muted">{{ lang.FormatNumber 0 $sc.kartsim.target }} h</span></span>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $kPct }}%"></div>
+              <span class="text-muted text-xs uppercase tracking-wider block mb-2">KartSim</span>
+              <div class="flex items-center gap-2.5">
+                <span class="text-xs text-muted tabular-nums shrink-0 w-14">0 h</span>
+                <div class="flex-1">
+                  <div class="progress-track">
+                    <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $kPct }}%"></div>
+                  </div>
+                  <div style="width: {{ math.Min 100 $kPct }}%">
+                    <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ lang.FormatNumber 0 $sc.kartsim.current }} h</span>
+                  </div>
+                </div>
+                <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ lang.FormatNumber 0 $sc.kartsim.target }} h</span>
               </div>
             </div>
 
@@ -81,17 +99,10 @@
           ENGINEERING<br>THE APEX<span class="text-accent">.</span>
         </h1>
         <p class="text-slate text-lg mt-6 max-w-md leading-relaxed">
-          A Senior Principal Engineer's approach to competitive motorsport. Data in. Performance out.
+          A Software Engineer's approach to competitive motorsport. Data in. Performance out.
         </p>
-        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 font-mono text-xs tracking-wider text-muted">
-          <span>Senior Principal Engineer @ <span class="text-white">Red Hat</span></span>
-          <span class="text-subtle">|</span>
-          <span class="text-accent">Data-driven methodology</span>
-          <span class="text-subtle">|</span>
-          <span>2027 T4 Ireland</span>
-        </div>
         <div class="flex flex-wrap gap-4 mt-8">
-          <a href="/program/" class="btn-primary">The Program</a>
+          <a href="/foundation/" class="btn-primary">Explore Foundation</a>
           <a href="/partnerships/" class="btn-outline">Partnership Alignment</a>
         </div>
       </div>

@@ -16,7 +16,7 @@ title = 'Pahim Racing'
       unsafe = true
 
 [params]
-  description = "Engineering the Apex. A Senior Principal Engineer's approach to competitive motorsport."
+  description = "Engineering the Apex. A Software Engineer's approach to competitive motorsport."
   tagline = "Data in. Performance out."
   author = "Amador Pahim"
   githubURL = "https://github.com/apahim/boxbox"
@@ -29,10 +29,6 @@ title = 'Pahim Racing'
     name = 'Dashboard'
     pageRef = '/'
     weight = 10
-  [[menus.main]]
-    name = 'The Program'
-    pageRef = '/program'
-    weight = 20
   [[menus.main]]
     name = 'Foundation'
     pageRef = '/foundation'
