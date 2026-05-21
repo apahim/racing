@@ -17,15 +17,14 @@
   </div>
 </section>
 
-<!-- Data Acquisition: BoxBox -->
+<!-- Live Data Acquisition -->
 <section id="data-acquisition" class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
-
-    <div class="grid md:grid-cols-2 gap-16 items-start mb-16">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
 
       <div>
         <span class="section-label">// Data Acquisition</span>
-        <h2 class="section-title">Data Acquisition</h2>
+        <h2 class="section-title">Live Data Acquisition</h2>
         <p class="text-slate leading-relaxed mb-6">
           Rental karts have no onboard telemetry. To fill that gap, the preparation
           phase uses a <span class="text-white font-semibold">RaceBox Mini</span> GPS
@@ -35,10 +34,57 @@
           Mini&rsquo;s 25Hz GPS delivers the precision that phone GPS cannot: accurate
           enough to measure braking points, apex positioning and corner speed differentials.
         </p>
+        <div class="space-y-3">
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">RaceBox Mini</span>:
+              25Hz GPS receiver delivering sub-metre accuracy for braking points, apex positioning and corner speed differentials
+            </span>
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">RaceChrono Pro</span>:
+              live lap timing, sector splits, racing line recording and session logging on every outing
+            </span>
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">GoPro fallback</span>:
+              GPS and timing data extracted directly from MP4 files when the RaceBox isn&rsquo;t available
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger" data-src="/img/racechrono-live.webp">
+          <img src="/img/racechrono-live.webp" alt="RaceChrono Pro live timing during a rental kart session" class="w-full h-auto">
+        </div>
+        <p class="font-mono text-xs text-muted mt-3 tracking-wider">
+          RaceChrono Pro live timing powered by RaceBox Mini 25Hz GPS
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BoxBox -->
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="grid md:grid-cols-2 gap-16 items-start mb-16">
+
+      <div>
+        <span class="section-label">// Post-Session Analysis</span>
+        <h2 class="section-title">BoxBox</h2>
         <p class="text-slate leading-relaxed mb-6">
-          After each session, the recorded telemetry is imported into
-          <span class="text-white font-semibold">BoxBox</span>, a custom-built analysis
-          dashboard that turns raw RaceChrono data into actionable insights: lap time
+          <span class="text-white font-semibold">BoxBox</span> is a purpose-built analysis
+          platform developed specifically for this campaign. After each session, recorded
+          telemetry is imported and transformed into actionable insights: lap time
           progression, racing line comparison on satellite imagery, corner-by-corner
           root-cause classification and automated coaching feedback. Every session
           becomes a structured dataset, not a memory.
@@ -47,14 +93,14 @@
           BoxBox also supports GoPro video as a telemetry source, extracting
           GPS and timing data directly from MP4 files. This makes deep session analysis
           accessible to any rental kart driver with a GoPro, no specialized hardware
-          required. For the campaign, it&rsquo;s a fallback when the RaceBox isn&rsquo;t
-          available. For the community, it&rsquo;s the entry point. The analytical
-          discipline built here carries directly into championship racing with the
+          required. For the community, it&rsquo;s an open-source entry point into
+          data-driven karting. For the campaign, it&rsquo;s the analytical foundation.
+          The discipline built here carries directly into championship racing with the
           Alfano 7 professional data logger.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="https://boxbox.pahim.org" target="_blank" rel="noopener" class="btn-primary">
-            Launch boxbox &rarr;
+            Launch BoxBox &rarr;
           </a>
           <a href="https://github.com/apahim/boxbox" target="_blank" rel="noopener" class="btn-outline">
             View on GitHub &rarr;
@@ -63,12 +109,6 @@
       </div>
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-6 cursor-zoom-in lightbox-trigger" data-src="/img/racechrono-live.webp">
-          <img src="/img/racechrono-live.webp" alt="RaceChrono Pro live timing during a rental kart session" class="w-full h-auto">
-        </div>
-        <p class="font-mono text-xs text-muted mt-3 mb-8 tracking-wider">
-          RaceChrono Pro live timing powered by RaceBox Mini 25Hz GPS
-        </p>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger" data-src="/img/boxbox-overview.webp">
           <img src="/img/boxbox-overview.webp" alt="BoxBox session overview dashboard" class="w-full h-auto">
         </div>
