@@ -17,179 +17,6 @@
   </div>
 </section>
 
-<!-- Driver Preparation -->
-<section class="py-20 border-t border-subtle">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-16 items-start">
-
-      <div>
-        <span class="section-label">// The Driver</span>
-        <h2 class="section-title">Driver Preparation</h2>
-        <p class="text-slate leading-relaxed mb-6">
-          A competitive kart driver is a system: physical, cognitive and physiological
-          subsystems that must perform together under sustained stress. There is no power
-          steering, no power brakes, no traction control. Every input is a direct physical
-          output from the driver. Preparing that system requires
-          <span class="text-white font-semibold">motorsport-specific conditioning</span>:
-          <span class="text-white font-semibold">cardiovascular endurance</span> to maintain
-          decision-making quality through 15-minute finals under heat soak,
-          <span class="text-white font-semibold">neck and core strength</span> to absorb
-          accumulated G-forces without a headrest and deliver precise inputs lap after lap.
-        </p>
-        <p class="text-slate leading-relaxed mb-6">
-          Physical capacity is only half the system. <span class="text-white font-semibold">Reaction
-          time</span> under fatigue separates competitive drivers from fast ones. Race
-          starts, late-braking overtakes and split-second gap decisions happen deep into
-          physically demanding sessions. <span class="text-white font-semibold">Mental
-          conditioning</span> ties it together: managing focus across a full race day, controlling
-          adrenaline on the grid, resetting composure after an incident and maintaining
-          discipline when the instinct is to overdrive.
-        </p>
-        <div class="space-y-3">
-          <div class="flex items-baseline gap-3">
-            <span class="text-accent font-mono text-sm">&rsaquo;</span>
-            <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Cardiovascular &amp; endurance</span>:
-              Zone-2 aerobic base, sustained performance under heat and G-load fatigue
-            </span>
-          </div>
-          <div class="flex items-baseline gap-3">
-            <span class="text-accent font-mono text-sm">&rsaquo;</span>
-            <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Neck, core &amp; reaction</span>:
-              G-force resilience, input precision, sub-0.1s decisions under elevated heart rate
-            </span>
-          </div>
-          <div class="flex items-baseline gap-3">
-            <span class="text-accent font-mono text-sm">&rsaquo;</span>
-            <span class="text-slate text-sm">
-              {{- $w := site.Data.scorecard.weight -}}
-              <span class="text-white font-semibold">Weight management</span>:
-              {{ $w.start }}kg to {{ $w.current }}kg since August 2025. Every kilogram above the 168kg class
-              minimum is a competitive penalty in acceleration, braking and cornering
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-6">
-          <img src="/img/body.webp" alt="Physical transformation" class="w-full h-auto">
-        </div>
-        {{- $w := site.Data.scorecard.weight -}}
-        {{- $wPct := math.Round (mul (div (sub $w.start $w.current | float) (sub $w.start $w.target | float)) 100) -}}
-        <div class="mb-4 pb-4 border-b border-subtle">
-          <span class="text-muted text-xs uppercase tracking-wider block mb-2">Weight</span>
-          <div class="flex items-center gap-2.5">
-            <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $w.start }} kg</span>
-            <div class="flex-1">
-              <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
-              </div>
-              <div style="width: {{ math.Min 100 $wPct }}%">
-                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $w.current }} kg</span>
-              </div>
-            </div>
-            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $w.target }} kg</span>
-          </div>
-        </div>
-        {{- $r := site.Data.scorecard.rhr -}}
-        {{- $rPct := math.Round (mul (div (sub $r.start $r.current | float) (sub $r.start $r.target | float)) 100) -}}
-        <div>
-          <span class="text-muted text-xs uppercase tracking-wider block mb-2">Resting HR</span>
-          <div class="flex items-center gap-2.5">
-            <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $r.start }} bpm</span>
-            <div class="flex-1">
-              <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
-              </div>
-              <div style="width: {{ math.Min 100 $rPct }}%">
-                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $r.current }} bpm</span>
-              </div>
-            </div>
-            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $r.target }} bpm</span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Track Development -->
-<section class="py-20 border-t border-subtle">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-16 items-start">
-
-      <div class="order-2 md:order-1">
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow">
-          <img src="/img/session.webp" alt="On track session" class="w-full h-auto">
-        </div>
-        <div class="mt-6 space-y-2">
-          {{- range site.Data.scorecard.tracks -}}
-          {{- $tPct := math.Round (mul (div (float .laps) (float .target)) 100) -}}
-          {{- $exceeded := gt $tPct 100 -}}
-          <div class="flex items-center gap-3">
-            <span class="font-mono text-xs text-slate w-28 truncate">{{ .name }}</span>
-            <div class="progress-track flex-1">
-              <div class="progress-fill {{ if $exceeded }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $tPct }}%"></div>
-            </div>
-            <span class="font-mono text-xs tabular-nums w-16 text-right {{ if $exceeded }}text-green-400{{ else }}text-muted{{ end }}">{{ .laps }}/{{ .target }}</span>
-          </div>
-          {{- end }}
-        </div>
-      </div>
-
-      <div class="order-1 md:order-2">
-        <span class="section-label">// Seat Time</span>
-        <h2 class="section-title">Track Development</h2>
-        <p class="text-slate leading-relaxed mb-6">
-          No amount of data or conditioning substitutes for the neural pathways built
-          through repetition on track. Braking references, spatial awareness in traffic,
-          the feel of a kart rotating under load. These are learned through laps,
-          not theory. Seat time is the irreplaceable variable.
-        </p>
-        <p class="text-slate leading-relaxed mb-6">
-          Throughout 2026, rental karting sessions across multiple circuits in Ireland and
-          abroad serve as the training ground. Each layout develops different skills:
-          fast, flowing circuits demand commitment and peripheral vision at speed, tight
-          technical tracks reward braking precision and patience, and elevation changes
-          expose kart balance and throttle sensitivity. The variety is deliberate:
-          a driver who can adapt quickly to an unfamiliar circuit carries that adaptability
-          into championship weekends.
-        </p>
-        <div class="space-y-3">
-          <div class="flex items-baseline gap-3">
-            <span class="text-accent font-mono text-sm">&rsaquo;</span>
-            <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Racecraft</span>: reading other drivers,
-              managing space on lap 1 turn 1, knowing when to attack vs. defend, understanding
-              draft and slipstream dynamics in a pack
-            </span>
-          </div>
-          <div class="flex items-baseline gap-3">
-            <span class="text-accent font-mono text-sm">&rsaquo;</span>
-            <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Track adaptation</span>: quickly identifying
-              braking references on a new circuit, adjusting to different grip levels, reading
-              surface conditions and adapting to camber and elevation changes
-            </span>
-          </div>
-          <div class="flex items-baseline gap-3">
-            <span class="text-accent font-mono text-sm">&rsaquo;</span>
-            <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Consistency</span>: a fast lap means nothing
-              without repeatable execution. The target is sub-0.1s variance under race
-              conditions: traffic, pressure and tire degradation
-            </span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- Data Acquisition: BoxBox -->
 <section id="data-acquisition" class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
@@ -301,6 +128,80 @@
   </div>
 </section>
 
+<!-- Track Development -->
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <div class="order-2 md:order-1">
+        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow">
+          <img src="/img/session.webp" alt="On track session" class="w-full h-auto">
+        </div>
+        <div class="mt-6 space-y-2">
+          {{- range site.Data.scorecard.tracks -}}
+          {{- $tPct := math.Round (mul (div (float .laps) (float .target)) 100) -}}
+          {{- $exceeded := gt $tPct 100 -}}
+          <div class="flex items-center gap-3">
+            <span class="font-mono text-xs text-slate w-28 truncate">{{ .name }}</span>
+            <div class="progress-track flex-1">
+              <div class="progress-fill {{ if $exceeded }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $tPct }}%"></div>
+            </div>
+            <span class="font-mono text-xs tabular-nums w-16 text-right {{ if $exceeded }}text-green-400{{ else }}text-muted{{ end }}">{{ .laps }}/{{ .target }}</span>
+          </div>
+          {{- end }}
+        </div>
+      </div>
+
+      <div class="order-1 md:order-2">
+        <span class="section-label">// Seat Time</span>
+        <h2 class="section-title">Track Development</h2>
+        <p class="text-slate leading-relaxed mb-6">
+          No amount of data or conditioning substitutes for the neural pathways built
+          through repetition on track. Braking references, spatial awareness in traffic,
+          the feel of a kart rotating under load. These are learned through laps,
+          not theory. Seat time is the irreplaceable variable.
+        </p>
+        <p class="text-slate leading-relaxed mb-6">
+          Throughout 2026, rental karting sessions across multiple circuits in Ireland and
+          abroad serve as the training ground. Each layout develops different skills:
+          fast, flowing circuits demand commitment and peripheral vision at speed, tight
+          technical tracks reward braking precision and patience, and elevation changes
+          expose kart balance and throttle sensitivity. The variety is deliberate:
+          a driver who can adapt quickly to an unfamiliar circuit carries that adaptability
+          into championship weekends.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">Racecraft</span>: reading other drivers,
+              managing space on lap 1 turn 1, knowing when to attack vs. defend, understanding
+              draft and slipstream dynamics in a pack
+            </span>
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">Track adaptation</span>: quickly identifying
+              braking references on a new circuit, adjusting to different grip levels, reading
+              surface conditions and adapting to camber and elevation changes
+            </span>
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">Consistency</span>: a fast lap means nothing
+              without repeatable execution. The target is sub-0.1s variance under race
+              conditions: traffic, pressure and tire degradation
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- Sim Training -->
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
@@ -365,6 +266,105 @@
               </div>
             </div>
             <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ lang.FormatNumber 0 $k.target }} h</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Driver Preparation -->
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <span class="section-label">// The Driver</span>
+        <h2 class="section-title">Driver Preparation</h2>
+        <p class="text-slate leading-relaxed mb-6">
+          A competitive kart driver is a system: physical, cognitive and physiological
+          subsystems that must perform together under sustained stress. There is no power
+          steering, no power brakes, no traction control. Every input is a direct physical
+          output from the driver. Preparing that system requires
+          <span class="text-white font-semibold">motorsport-specific conditioning</span>:
+          <span class="text-white font-semibold">cardiovascular endurance</span> to maintain
+          decision-making quality through 15-minute finals under heat soak,
+          <span class="text-white font-semibold">neck and core strength</span> to absorb
+          accumulated G-forces without a headrest and deliver precise inputs lap after lap.
+        </p>
+        <p class="text-slate leading-relaxed mb-6">
+          Physical capacity is only half the system. <span class="text-white font-semibold">Reaction
+          time</span> under fatigue separates competitive drivers from fast ones. Race
+          starts, late-braking overtakes and split-second gap decisions happen deep into
+          physically demanding sessions. <span class="text-white font-semibold">Mental
+          conditioning</span> ties it together: managing focus across a full race day, controlling
+          adrenaline on the grid, resetting composure after an incident and maintaining
+          discipline when the instinct is to overdrive.
+        </p>
+        <div class="space-y-3">
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">Cardiovascular &amp; endurance</span>:
+              Zone-2 aerobic base, sustained performance under heat and G-load fatigue
+            </span>
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              <span class="text-white font-semibold">Neck, core &amp; reaction</span>:
+              G-force resilience, input precision, sub-0.1s decisions under elevated heart rate
+            </span>
+          </div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-accent font-mono text-sm">&rsaquo;</span>
+            <span class="text-slate text-sm">
+              {{- $w := site.Data.scorecard.weight -}}
+              <span class="text-white font-semibold">Weight management</span>:
+              {{ $w.start }}kg to {{ $w.current }}kg since August 2025. Every kilogram above the 168kg class
+              minimum is a competitive penalty in acceleration, braking and cornering
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-6">
+          <img src="/img/body.webp" alt="Physical transformation" class="w-full h-auto">
+        </div>
+        {{- $w := site.Data.scorecard.weight -}}
+        {{- $wPct := math.Round (mul (div (sub $w.start $w.current | float) (sub $w.start $w.target | float)) 100) -}}
+        <div class="mb-4 pb-4 border-b border-subtle">
+          <span class="text-muted text-xs uppercase tracking-wider block mb-2">Weight</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $w.start }} kg</span>
+            <div class="flex-1">
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
+              </div>
+              <div style="width: {{ math.Min 100 $wPct }}%">
+                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $w.current }} kg</span>
+              </div>
+            </div>
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $w.target }} kg</span>
+          </div>
+        </div>
+        {{- $r := site.Data.scorecard.rhr -}}
+        {{- $rPct := math.Round (mul (div (sub $r.start $r.current | float) (sub $r.start $r.target | float)) 100) -}}
+        <div>
+          <span class="text-muted text-xs uppercase tracking-wider block mb-2">Resting HR</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $r.start }} bpm</span>
+            <div class="flex-1">
+              <div class="progress-track">
+                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
+              </div>
+              <div style="width: {{ math.Min 100 $rPct }}%">
+                <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $r.current }} bpm</span>
+              </div>
+            </div>
+            <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ $r.target }} bpm</span>
           </div>
         </div>
       </div>
