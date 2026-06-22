@@ -99,7 +99,7 @@
           Alfano 7 professional data logger.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="https://boxbox.pahim.org" target="_blank" rel="noopener" class="btn-primary">
+          <a href="https://boxbox.ie" target="_blank" rel="noopener" class="btn-primary">
             Launch BoxBox &rarr;
           </a>
           <a href="https://github.com/apahim/boxbox" target="_blank" rel="noopener" class="btn-outline">
@@ -293,13 +293,14 @@
         </p>
         {{- $k := site.Data.scorecard.kartsim -}}
         {{- $kPct := math.Round (mul (div (float $k.current) (float $k.target)) 100) -}}
+        {{- $kDone := ge $kPct 100 -}}
         <div class="mt-6">
           <span class="text-muted text-xs uppercase tracking-wider block mb-2">KartSim</span>
           <div class="flex items-center gap-2.5">
             <span class="text-xs text-muted tabular-nums shrink-0 w-14">0 h</span>
             <div class="flex-1">
               <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $kPct }}%"></div>
+                <div class="progress-fill {{ if $kDone }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $kPct }}%"></div>
               </div>
               <div style="width: {{ math.Min 100 $kPct }}%">
                 <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ lang.FormatNumber 0 $k.current }} h</span>
@@ -375,13 +376,14 @@
         </div>
         {{- $w := site.Data.scorecard.weight -}}
         {{- $wPct := math.Round (mul (div (sub $w.start $w.current | float) (sub $w.start $w.target | float)) 100) -}}
+        {{- $wDone := ge $wPct 100 -}}
         <div class="mb-4 pb-4 border-b border-subtle">
           <span class="text-muted text-xs uppercase tracking-wider block mb-2">Weight</span>
           <div class="flex items-center gap-2.5">
             <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $w.start }} kg</span>
             <div class="flex-1">
               <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $wPct }}%"></div>
+                <div class="progress-fill {{ if $wDone }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $wPct }}%"></div>
               </div>
               <div style="width: {{ math.Min 100 $wPct }}%">
                 <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $w.current }} kg</span>
@@ -392,13 +394,14 @@
         </div>
         {{- $r := site.Data.scorecard.rhr -}}
         {{- $rPct := math.Round (mul (div (sub $r.start $r.current | float) (sub $r.start $r.target | float)) 100) -}}
+        {{- $rDone := ge $rPct 100 -}}
         <div>
           <span class="text-muted text-xs uppercase tracking-wider block mb-2">Resting HR</span>
           <div class="flex items-center gap-2.5">
             <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ $r.start }} bpm</span>
             <div class="flex-1">
               <div class="progress-track">
-                <div class="progress-fill bg-accent" style="width: {{ math.Min 100 $rPct }}%"></div>
+                <div class="progress-fill {{ if $rDone }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $rPct }}%"></div>
               </div>
               <div style="width: {{ math.Min 100 $rPct }}%">
                 <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ $r.current }} bpm</span>

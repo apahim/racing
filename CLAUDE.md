@@ -62,7 +62,7 @@ The site follows a phased campaign narrative:
 
 User flow: Dashboard → Foundation → Competition → Partnerships (linear narrative).
 
-Nav also includes an external link to [boxbox.pahim.org](https://boxbox.pahim.org).
+Nav also includes an external link to [boxbox.ie](https://boxbox.ie).
 
 ### Key Distinctions
 

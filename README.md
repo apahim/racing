@@ -50,7 +50,7 @@ hugo.toml         Hugo configuration
 
 ## Related
 
-- [boxbox](https://github.com/apahim/boxbox) — custom telemetry dashboard for rental kart data analysis during the preparation phase ([boxbox.pahim.org](https://boxbox.pahim.org))
+- [boxbox](https://github.com/apahim/boxbox) — custom telemetry dashboard for rental kart data analysis during the preparation phase ([boxbox.ie](https://boxbox.ie))
 
 ## Author
 
