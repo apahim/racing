@@ -11,11 +11,6 @@
     <p class="text-slate text-sm mt-1">{{ .tagline }}</p>
   </div>
 
-  <div class="mb-6">
-    <span class="font-mono text-3xl font-bold text-white">&euro;{{ .price }}</span>
-    <span class="text-muted text-sm font-mono"> / {{ with .unit }}{{ . }}{{ else }}season{{ end }}</span>
-  </div>
-
   <ul class="flex-1 space-y-3 mb-8">
     {{ range .deliverables }}
     <li class="flex items-start gap-2 text-sm text-slate">
