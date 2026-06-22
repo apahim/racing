@@ -1,26 +1,26 @@
 weight:
-  current: 89
+  current: 88
   target: 88
   start: 119
 
 rhr:
-  current: 64
+  current: 62
   target: 55
   start: 78
 
 kartsim:
-  current: 1100
+  current: 1345
   target: 2000
 
 tracks:
   - name: Kiltorcan
-    laps: 489
+    laps: 625
     target: 100
   - name: Whiteriver Park
     laps: 0
     target: 100
   - name: Watergrasshill
-    laps: 0
+    laps: 36
     target: 100
   - name: Athboy
     laps: 0
