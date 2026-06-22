@@ -54,4 +54,4 @@ hugo.toml         Hugo configuration
 
 ## Author
 
-Amador Pahim — Senior Principal Software Engineer, Red Hat
+Amador Pahim — Senior Principal Software Engineer
