@@ -23,7 +23,16 @@ const W = 1200;
 const H = 630;
 
 // --- render -----------------------------------------------------------------
-await sharp(SRC).png().toFile(OUT);
+// 4x supersampled render: rasterize the SVG at 4800x2520, then downscale to
+// 1200x630 with Lanczos. Flattened onto the obsidian background so the PNG
+// is 3-channel RGB with no alpha — social platforms re-encode og-images as
+// JPEG, and an opaque alpha channel only adds a compositing variable.
+const SCALE = 4;
+await sharp(SRC, { density: 72 * SCALE })
+  .resize(W, H, { kernel: 'lanczos3' })
+  .flatten({ background: '#0A0A0A' })
+  .png()
+  .toFile(OUT);
 
 // --- verify -----------------------------------------------------------------
 const { data, info } = await sharp(OUT).raw().toBuffer({ resolveWithObject: true });
