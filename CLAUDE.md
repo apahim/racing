@@ -15,8 +15,9 @@ npm run build        # production build to public/
 ## Directory Layout
 
 - `content/` — page content as front-matter-only Markdown files (content lives in custom layouts)
+- `data/scorecard.yaml` — single source of truth for dynamic UI: metrics, track laps, campaign facts, race calendar, availability
 - `layouts/` — Hugo templates: `_default/baseof.html` is the shell, `index.html` is the homepage
-- `layouts/partials/` — reusable components: nav, hero, footer, head, system-status, tier-card
+- `layouts/partials/` — reusable components: nav, hero, footer, head, tier-card, metric-bar, track-bar, event-card, event-counts, prep-progress
 - `layouts/foundation/single.html` — Phase 1: Foundation (physical, track, BoxBox sections)
 - `layouts/competition/single.html` — Phase 2: Competition (campaign, team, telemetry, control env)
 - `layouts/partnerships/single.html` — partnership tiers and value proposition
@@ -24,6 +25,19 @@ npm run build        # production build to public/
 - `static/img/` — images served at `/img/` (use this for new images)
 - `hugo.toml` — site config, menus, params
 - `tailwind.config.js` — custom colors, fonts, plugins
+
+## Data-Driven UI
+
+`data/scorecard.yaml` drives every dynamic number and repeating component on the site:
+
+- `weight`, `rhr`, `kartsim`, `tracks` — progress metrics, rendered by `metric-bar.html` / `track-bar.html`
+- `campaign` — phase date ranges, class minimum weight, Phase 2 progress
+- `events` — race calendar cards (`event-card.html`); season/total/round/circuit counts are computed by `event-counts.html`
+- `availability` — partnership slot status on the Partnerships page
+
+Update the YAML and all pages reflect it. Adding or removing an event automatically
+updates every event and circuit count. Use `hugo.Data.scorecard` (not the deprecated
+`site.Data`) in templates.
 
 ## Design System
 

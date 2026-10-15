@@ -1,0 +1,18 @@
+{{- /*
+track-bar: renders a compact track laps progress row.
+
+Context (dict):
+  name   track name
+  laps   laps completed
+  target lap target
+  mono   true to render labels in font-mono (foundation page style)
+*/ -}}
+{{- $pct := math.Round (mul (div (float .laps) (float .target)) 100) -}}
+{{- $exceeded := gt $pct 100 -}}
+<div class="flex items-center gap-3">
+  <span class="{{ if .mono }}font-mono {{ end }}text-xs text-slate w-28 truncate">{{ .name }}</span>
+  <div class="progress-track flex-1">
+    <div class="progress-fill {{ if $exceeded }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ math.Min 100 $pct }}%"></div>
+  </div>
+  <span class="{{ if .mono }}font-mono {{ end }}text-xs tabular-nums w-16 text-right {{ if $exceeded }}text-green-400{{ else }}text-muted{{ end }}">{{ .laps }}/{{ .target }}</span>
+</div>

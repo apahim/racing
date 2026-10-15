@@ -1,0 +1,16 @@
+{{- /*
+prep-progress: overall Phase 1 (Foundation) preparation percentage.
+
+Averages the capped progress of weight, resting HR, KartSim and the
+mean track-lap progress. Driven entirely by scorecard.yaml.
+*/ -}}
+{{- $sc := hugo.Data.scorecard -}}
+{{- $wPct := math.Min 100 (math.Round (mul (div (sub $sc.weight.start $sc.weight.current | float) (sub $sc.weight.start $sc.weight.target | float)) 100)) -}}
+{{- $rPct := math.Min 100 (math.Round (mul (div (sub $sc.rhr.start $sc.rhr.current | float) (sub $sc.rhr.start $sc.rhr.target | float)) 100)) -}}
+{{- $kPct := math.Min 100 (math.Round (mul (div (float $sc.kartsim.current) (float $sc.kartsim.target)) 100)) -}}
+{{- $tTotal := 0.0 -}}
+{{- range $sc.tracks -}}
+  {{- $tTotal = add $tTotal (math.Min 100 (math.Round (mul (div (float .laps) (float .target)) 100))) -}}
+{{- end -}}
+{{- $tPct := math.Round (div $tTotal (len $sc.tracks)) -}}
+{{- return (math.Round (div (add (add (add $wPct $rPct) $kPct) $tPct) 4)) -}}

@@ -1,5 +1,8 @@
 {{ define "main" }}
 
+{{- $sc := hugo.Data.scorecard -}}
+{{- $counts := partial "event-counts.html" . -}}
+
 <section class="pt-20 pb-16">
   <div class="max-w-6xl mx-auto px-6">
     <a href="/" class="font-mono text-xs text-muted hover:text-accent tracking-wider mb-6 inline-block">
@@ -22,9 +25,9 @@
     <span class="section-label">// Irish Championship Season</span>
     <h2 class="section-title mb-2">Season Partnerships</h2>
     <p class="text-slate text-sm mb-8 max-w-2xl">
-      Back the full 2027 Tillotson T4 Ireland Championship campaign: 9 events across
-      the season including the KT Cup pre-season, 7 championship rounds and the Euro Cup.
-      March through September.
+      Back the full 2027 Tillotson T4 Ireland Championship campaign: {{ $counts.season }} events across
+      the season including the KT Cup pre-season, {{ $counts.rounds }} championship rounds and the Euro Cup.
+      {{ $sc.campaign.phases.competition.window }}.
     </p>
 
     <div class="grid md:grid-cols-3 gap-6">
@@ -196,22 +199,12 @@
             <span class="font-mono text-xs text-muted ml-2">partnership availability</span>
           </div>
           <div class="terminal-body text-sm">
-            <div class="flex justify-between font-mono">
-              <span class="text-muted">Apex Partner</span>
-              <span class="text-yellow-500 font-bold">1 SLOT AVAILABLE</span>
+            {{- range $i, $a := $sc.availability }}
+            <div class="flex justify-between font-mono{{ if $i }} mt-2{{ end }}">
+              <span class="text-muted">{{ $a.name }}</span>
+              <span class="{{ if eq $a.tone "warning" }}text-yellow-500{{ else }}text-green-400{{ end }} font-bold">{{ $a.status }}</span>
             </div>
-            <div class="flex justify-between font-mono mt-2">
-              <span class="text-muted">Nations Cup</span>
-              <span class="text-yellow-500 font-bold">1 SLOT AVAILABLE</span>
-            </div>
-            <div class="flex justify-between font-mono mt-2">
-              <span class="text-muted">Grid Partners</span>
-              <span class="text-green-400 font-bold">ACCEPTING</span>
-            </div>
-            <div class="flex justify-between font-mono mt-2">
-              <span class="text-muted">Supporters</span>
-              <span class="text-green-400 font-bold">OPEN</span>
-            </div>
+            {{- end }}
           </div>
         </div>
       </div>

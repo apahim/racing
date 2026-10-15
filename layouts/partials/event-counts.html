@@ -1,0 +1,21 @@
+{{- /*
+event-counts: campaign counts computed from scorecard.yaml events.
+
+Returns (dict):
+  season    events in the Irish championship season (excl. international)
+  total     all events incl. international
+  rounds    championship rounds only
+  circuits  distinct venues used by season events
+*/ -}}
+{{- $events := hugo.Data.scorecard.events -}}
+{{- $season := where $events "kind" "!=" "international" -}}
+{{- $venues := slice -}}
+{{- range $season -}}
+  {{- $venues = $venues | append .venue -}}
+{{- end -}}
+{{- return (dict
+  "season" (len $season)
+  "total" (len $events)
+  "rounds" (len (where $events "kind" "round"))
+  "circuits" (len (uniq $venues))
+) -}}

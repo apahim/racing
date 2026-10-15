@@ -1,27 +1,115 @@
 weight:
-  current: 88
+  current: 83
   target: 88
   start: 119
 
 rhr:
-  current: 62
+  current: 58
   target: 55
   start: 78
 
 kartsim:
-  current: 1345
+  current: 2044
   target: 2000
 
 tracks:
   - name: Kiltorcan
-    laps: 625
+    laps: 830
     target: 100
   - name: Whiteriver Park
-    laps: 0
+    laps: 32
     target: 100
   - name: Watergrasshill
-    laps: 36
+    laps: 73
     target: 100
   - name: Athboy
     laps: 0
     target: 100
+
+campaign:
+  classMinimum: 168
+  phases:
+    foundation:
+      label: "Aug 2025 – Dec 2026"
+      long: "August 2025 through December 2026"
+    competition:
+      label: "Mar – Sep 2027"
+      long: "March through September 2027"
+      window: "March through September"
+      progress: 0
+
+events:
+  - round: "PRE-SEASON"
+    kind: "preseason"
+    title: "KT Cup"
+    venue: "Kiltorcan"
+    location: "Kiltorcan, Co. Kilkenny"
+    month: "March"
+  - round: "ROUND 1"
+    kind: "round"
+    title: "Whiteriver Park"
+    venue: "Whiteriver Park"
+    location: "Co. Louth"
+    month: "April"
+  - round: "ROUND 2"
+    kind: "round"
+    title: "Watergrasshill"
+    venue: "Watergrasshill"
+    location: "Co. Cork"
+    month: "May"
+  - round: "ROUND 3"
+    kind: "round"
+    title: "Kiltorcan"
+    venue: "Kiltorcan"
+    location: "Co. Kilkenny"
+    month: "May"
+  - round: "ROUND 4"
+    kind: "round"
+    title: "Kiltorcan"
+    venue: "Kiltorcan"
+    location: "Co. Kilkenny"
+    month: "July"
+  - round: "EURO CUP"
+    kind: "eurocup"
+    title: "Kiltorcan"
+    venue: "Kiltorcan"
+    location: "Co. Kilkenny"
+    month: "July"
+  - round: "ROUND 5"
+    kind: "round"
+    title: "Watergrasshill"
+    venue: "Watergrasshill"
+    location: "Co. Cork"
+    month: "August"
+  - round: "ROUND 6"
+    kind: "round"
+    title: "Athboy"
+    venue: "Athboy"
+    location: "Co. Meath"
+    month: "August"
+  - round: "ROUND 7"
+    kind: "round"
+    title: "Kiltorcan"
+    venue: "Kiltorcan"
+    location: "Co. Kilkenny"
+    month: "September"
+  - round: "NATIONS CUP"
+    kind: "international"
+    title: "Valencia"
+    venue: "Valencia"
+    location: "Spain"
+    month: "October"
+
+availability:
+  - name: "Apex Partner"
+    status: "1 SLOT AVAILABLE"
+    tone: "warning"
+  - name: "Nations Cup"
+    status: "1 SLOT AVAILABLE"
+    tone: "warning"
+  - name: "Grid Partners"
+    status: "ACCEPTING"
+    tone: "ok"
+  - name: "Supporters"
+    status: "OPEN"
+    tone: "ok"

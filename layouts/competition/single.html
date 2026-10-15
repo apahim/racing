@@ -1,11 +1,14 @@
 {{ define "main" }}
 
+{{- $sc := hugo.Data.scorecard -}}
+{{- $counts := partial "event-counts.html" . -}}
+
 <section class="pt-20 pb-16">
   <div class="max-w-6xl mx-auto px-6">
     <a href="/" class="font-mono text-xs text-muted hover:text-accent tracking-wider mb-6 inline-block">
       &larr; Dashboard
     </a>
-    <span class="section-label">// Mar – Sep 2027</span>
+    <span class="section-label">// {{ $sc.campaign.phases.competition.label }}</span>
     <h1 class="font-mono text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
       COMPETITION
     </h1>
@@ -32,8 +35,8 @@
           future results possible.
         </p>
         <p class="text-slate leading-relaxed mb-6">
-          This is a <span class="text-white font-semibold">rookie season</span>: ten
-          events across four Irish circuits and one international round, each one a
+          This is a <span class="text-white font-semibold">rookie season</span>: {{ $counts.total }}
+          events across {{ $counts.circuits }} Irish circuits and one international round, each one a
           controlled data collection opportunity. The goal is calibration, not trophies.
         </p>
         <div class="space-y-3">
@@ -41,7 +44,7 @@
             <span class="text-accent font-mono text-sm">&rsaquo;</span>
             <span class="text-slate text-sm">
               <span class="text-white font-semibold">Data collection</span>: telemetry
-              baselines across all 10 events and 4 circuits
+              baselines across all {{ $counts.total }} events and {{ $counts.circuits }} circuits
             </span>
           </div>
           <div class="flex items-baseline gap-3">
@@ -216,7 +219,7 @@
           <div class="flex items-baseline gap-3">
             <span class="text-accent font-mono text-sm">&rsaquo;</span>
             <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Weight</span>: 168kg combined minimum
+              <span class="text-white font-semibold">Weight</span>: {{ $sc.campaign.classMinimum }}kg combined minimum
               (Senior 168 class, kart + driver)
             </span>
           </div>
@@ -246,106 +249,19 @@
 <!-- Race Calendar -->
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
-    <span class="section-label">// 10 Events</span>
+    <span class="section-label">// {{ $counts.total }} Events</span>
     <h2 class="section-title">2027 Race Calendar</h2>
     <p class="text-slate leading-relaxed mb-8 max-w-3xl">
-      The Tillotson T4 Ireland Championship runs March through September across Ireland's
+      The Tillotson T4 Ireland Championship runs {{ $sc.campaign.phases.competition.window }} across Ireland's
       premier karting circuits, plus the Euro Cup. The T4 Nations Cup in October is a
       separate international event. Provisional 2027 schedule based on the 2026 calendar.
     </p>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
 
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-accent tracking-wider">PRE-SEASON</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">KT Cup</h4>
-        <p class="font-mono text-xs text-muted mb-1">Kiltorcan, Co. Kilkenny</p>
-        <p class="font-mono text-xs text-slate">March</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 1</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Whiteriver Park</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Louth</p>
-        <p class="font-mono text-xs text-slate">April</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 2</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Watergrasshill</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Cork</p>
-        <p class="font-mono text-xs text-slate">May</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 3</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Kiltorcan</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Kilkenny</p>
-        <p class="font-mono text-xs text-slate">May</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 4</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Kiltorcan</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Kilkenny</p>
-        <p class="font-mono text-xs text-slate">July</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-accent tracking-wider">EURO CUP</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Kiltorcan</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Kilkenny</p>
-        <p class="font-mono text-xs text-slate">July</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 5</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Watergrasshill</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Cork</p>
-        <p class="font-mono text-xs text-slate">August</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 6</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Athboy</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Meath</p>
-        <p class="font-mono text-xs text-slate">August</p>
-      </div>
-
-      <div class="status-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-white tracking-wider">ROUND 7</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Kiltorcan</h4>
-        <p class="font-mono text-xs text-muted mb-1">Co. Kilkenny</p>
-        <p class="font-mono text-xs text-slate">September</p>
-      </div>
-
-      <div class="status-card nations-cup-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="font-mono text-xs text-yellow-400 tracking-wider">NATIONS CUP</span>
-        </div>
-        <h4 class="font-mono text-sm font-bold text-white mb-1">Valencia</h4>
-        <p class="font-mono text-xs text-muted mb-1">Spain</p>
-        <p class="font-mono text-xs text-slate">October</p>
-        <p class="font-mono text-[10px] text-yellow-600/60 mt-1 tracking-wider">INTERNATIONAL</p>
-      </div>
+      {{- range $sc.events }}
+      {{ partial "event-card.html" . }}
+      {{- end }}
 
     </div>
   </div>
