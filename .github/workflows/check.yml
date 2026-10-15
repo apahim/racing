@@ -61,4 +61,15 @@ jobs:
             fi
           done
           [ "$missing" -eq 0 ] || exit 1
+          # Crawlability artifacts must exist in the build.
+          for artifact in robots.txt 404.html; do
+            if [ ! -f "public/$artifact" ]; then
+              echo "::error::Missing build artifact: $artifact"
+              exit 1
+            fi
+          done
+          grep -q "Sitemap:" public/robots.txt || {
+            echo "::error::robots.txt is missing its Sitemap line"
+            exit 1
+          }
           echo "Rendered HTML checks passed."

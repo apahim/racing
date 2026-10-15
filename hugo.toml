@@ -1,6 +1,8 @@
 baseURL = 'https://racing.pahim.org/'
 locale = 'en-us'
 title = 'Pahim Racing'
+disableKinds = ['taxonomy', 'term']
+enableRobotsTXT = true
 
 [build]
   [build.buildStats]
