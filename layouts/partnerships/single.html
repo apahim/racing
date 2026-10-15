@@ -96,8 +96,11 @@
       <div>
         <p class="text-slate text-sm leading-relaxed mb-6">
           A standalone international event, independent of the Irish championship.
-          250+ drivers from 30+ countries compete at Kartodromo Internacional Lucas Guerrero
-          in Valencia, Spain. A separate partnership opportunity with global visibility.
+          The 2025 edition drew
+          <a href="{{ site.Params.nationsCupURL }}" target="_blank" rel="noopener"
+            class="text-accent hover:text-orange-400 underline decoration-accent/40 underline-offset-2">248 drivers from 37 regions</a>
+          to Kartodromo Internacional Lucas Guerrero in Valencia, Spain. A separate
+          partnership opportunity with global visibility.
         </p>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow">
           {{ partial "img.html" (dict "file" "/static/img/nations-cup.webp" "alt" "T4 Nations Cup at Kartodromo Internacional Lucas Guerrero, Valencia" "class" "w-full h-auto") }}
@@ -116,7 +119,7 @@
         "nationsCup" true
         "deliverables" (slice
         "Exclusive title partner for the T4 Nations Cup international event"
-        "Helmet and race suit branding at the Nations Cup (250+ drivers, 30+ countries)"
+        "Helmet and race suit branding at the Nations Cup (248 drivers, 37 regions — T4NC25)"
         "Dedicated pre-event, race day and post-event content series on racing.pahim.org"
         "Full photo and video package from Valencia"
         "Co-branded technical race report with international field analysis"
@@ -131,6 +134,28 @@
     </div>
   </div>
 </section>
+
+{{ with $sc.campaign.audience }}
+<section class="py-20 border-t border-subtle">
+  <div class="max-w-6xl mx-auto px-6">
+    <span class="section-label">// The Audience</span>
+    <h2 class="section-title mb-2">Who Sees Your Brand</h2>
+    <p class="text-slate text-sm mb-8 max-w-2xl">
+      A concentration of decision-makers, not mass reach. Campaign content travels
+      through technical communities where engineering credibility carries weight.
+    </p>
+    <div class="grid md:grid-cols-3 gap-6">
+      {{- range . }}
+      <div class="status-card">
+        <span class="font-mono text-xs uppercase tracking-wider text-muted">{{ .label }}</span>
+        <div class="font-mono text-2xl font-bold text-white mt-2">{{ .value }}</div>
+        <p class="text-slate text-xs mt-2 leading-snug">{{ .detail }}</p>
+      </div>
+      {{- end }}
+    </div>
+  </div>
+</section>
+{{ end }}
 
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
@@ -193,6 +218,15 @@
         <p class="text-slate text-sm leading-relaxed mb-8">
           Year one builds the story. Partners who join now own a chapter of it.
         </p>
+        {{ with $sc.campaign.foundingWindow }}
+        <div class="border border-accent/40 rounded-lg px-5 py-4 mb-8">
+          <span class="font-mono text-xs uppercase tracking-wider text-accent">// Founding Window</span>
+          <p class="text-white text-sm mt-2">
+            Founding partnerships close <span class="font-bold">{{ . }}</span> &mdash; in
+            time to own the season-zero story from day one.
+          </p>
+        </div>
+        {{ end }}
         <div class="terminal-window">
           <div class="terminal-bar">
             <span class="terminal-dot bg-accent"></span>
@@ -205,6 +239,12 @@
             <div class="flex justify-between font-mono{{ if $i }} mt-2{{ end }}">
               <span class="text-muted">{{ $a.name }}</span>
               <span class="{{ if eq $a.tone "warning" }}text-yellow-500{{ else }}text-green-400{{ end }} font-bold">{{ $a.status }}</span>
+            </div>
+            {{- end }}
+            {{- with $sc.campaign.foundingWindow }}
+            <div class="flex justify-between font-mono mt-3 pt-3 border-t border-subtle">
+              <span class="text-muted">FOUNDING WINDOW</span>
+              <span class="text-yellow-500 font-bold">CLOSES {{ upper . }}</span>
             </div>
             {{- end }}
           </div>
