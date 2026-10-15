@@ -4,21 +4,31 @@
 <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
 <meta name="author" content="{{ site.Params.author }}">
 <link rel="canonical" href="{{ .Permalink }}">
+{{ with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+{{ end }}
 
-<meta property="og:title" content="{{ .Title }} | {{ site.Title }}">
+{{- /* Home gets a branded title; every other page uses "Page | Site". */ -}}
+{{- $title := printf "%s | %s" .Title site.Title -}}
+{{- if .IsHome -}}{{- $title = "Pahim Racing — Engineering the Apex" -}}{{- end -}}
+
+<meta property="og:title" content="{{ $title }}">
 <meta property="og:description"
   content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
 <meta property="og:image" content="{{ "og-image.png" | absURL }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pahim Racing — Engineering the Apex. 2027 Tillotson T4 Ireland Championship.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ .Permalink }}">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ .Title }} | {{ site.Title }}">
+<meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description"
   content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
 <meta name="twitter:image" content="{{ "og-image.png" | absURL }}">
 
-<title>{{ .Title }} | {{ site.Title }}</title>
+<title>{{ $title }}</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,3 +42,8 @@
 {{ $css = $css | minify | fingerprint }}
 {{ end }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+
+{{/* GoatCounter analytics — activates when goatCounterCode is set in hugo.toml. */}}
+{{ with site.Params.goatCounterCode }}
+<script data-goatcounter="https://{{ . }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{{ end }}

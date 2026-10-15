@@ -23,6 +23,10 @@ title = 'Pahim Racing'
   boxboxURL = "https://boxbox.ie"
   contactFormURL = "https://forms.gle/KkeEkg7mHE2BamTL6"
   linkedinURL = "https://www.linkedin.com/in/amadorpahim"
+  nationsCupURL = "https://tillotson.ie/t4-series/t4-nations-cup/"
+  # GoatCounter site code (the subdomain of <code>.goatcounter.com).
+  # Empty = analytics tag stays hidden. Set to activate collection.
+  goatCounterCode = ""
 
 [menus]
   [[menus.main]]
