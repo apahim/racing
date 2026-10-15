@@ -1,30 +1,61 @@
+# ============================================================================
+# Canonical campaign data — single source of truth for every dynamic number
+# on racing.pahim.org. Rendered by layouts/partials/*.html.
+#
+# Validated by scripts/validate-scorecard.mjs (npm run validate).
+#
+# Field semantics:
+#   label        display name
+#   unit         unit suffix rendered next to values (kg, bpm, h)
+#   baseline     starting measurement (August 2025 unless noted)
+#   current      latest measurement
+#   target       goal value
+#   targetStatus on-track | achieved
+#   note         plain-language explanation rendered under the metric
+#
+# Progress direction is derived from the data: when target < baseline the
+# metric improves downward (weight, resting HR); otherwise upward (hours).
+# Never introduce a value here without a verifiable source.
+# ============================================================================
+
 weight:
+  label: "Weight"
+  unit: "kg"
+  baseline: 119
   current: 83
   target: 88
-  start: 119
+  targetStatus: "achieved"
+  note: "Driver mass versus the 168 kg kart + driver class minimum."
 
 rhr:
+  label: "Resting HR"
+  unit: "bpm"
+  baseline: 78
   current: 58
   target: 55
-  start: 78
+  targetStatus: "on-track"
+  note: "Resting heart rate — proxy for cardiovascular conditioning."
 
 kartsim:
+  label: "KartSim"
+  unit: "h"
+  baseline: 0
   current: 2044
   target: 2000
+  targetStatus: "achieved"
+  note: "Simulator hours building circuit knowledge before arrival."
 
+# Track metrics record laps completed per championship circuit.
+# Deliberately no targets: lap counts measure volume, not competitiveness.
 tracks:
-  - name: Kiltorcan
+  - name: "Kiltorcan"
     laps: 830
-    target: 100
-  - name: Whiteriver Park
+  - name: "Whiteriver Park"
     laps: 32
-    target: 100
-  - name: Watergrasshill
+  - name: "Watergrasshill"
     laps: 73
-    target: 100
-  - name: Athboy
+  - name: "Athboy"
     laps: 0
-    target: 100
 
 campaign:
   classMinimum: 168
@@ -36,8 +67,15 @@ campaign:
       label: "Mar – Sep 2027"
       long: "March through September 2027"
       window: "March through September"
-      progress: 0
 
+calendar:
+  provisional: true
+  note: "Provisional 2027 schedule based on the 2026 calendar."
+
+# Event kinds: preseason | round | eurocup | international.
+# Counts are computed by layouts/partials/event-counts.html — never hardcode
+# an event count in a template. The Irish championship season is every
+# non-international event; the Nations Cup is separate and international.
 events:
   - round: "PRE-SEASON"
     kind: "preseason"
@@ -61,19 +99,19 @@ events:
     kind: "round"
     title: "Kiltorcan"
     venue: "Kiltorcan"
-    location: "Co. Kilkenny"
+    location: "Kiltorcan, Co. Kilkenny"
     month: "May"
   - round: "ROUND 4"
     kind: "round"
     title: "Kiltorcan"
     venue: "Kiltorcan"
-    location: "Co. Kilkenny"
+    location: "Kiltorcan, Co. Kilkenny"
     month: "July"
   - round: "EURO CUP"
     kind: "eurocup"
     title: "Kiltorcan"
     venue: "Kiltorcan"
-    location: "Co. Kilkenny"
+    location: "Kiltorcan, Co. Kilkenny"
     month: "July"
   - round: "ROUND 5"
     kind: "round"
@@ -91,7 +129,7 @@ events:
     kind: "round"
     title: "Kiltorcan"
     venue: "Kiltorcan"
-    location: "Co. Kilkenny"
+    location: "Kiltorcan, Co. Kilkenny"
     month: "September"
   - round: "NATIONS CUP"
     kind: "international"

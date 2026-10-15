@@ -2,11 +2,12 @@
 event-card: renders one race calendar card.
 
 Context (dict):
-  round     round label (e.g. "ROUND 1", "NATIONS CUP")
-  kind      preseason | round | eurocup | international
-  title     card title (event or venue name)
-  location  location line
-  month     month line
+  round       round label (e.g. "ROUND 1", "NATIONS CUP")
+  kind        preseason | round | eurocup | international
+  title       card title (event or venue name)
+  location    location line
+  month       month line
+  provisional true to mark the calendar as provisional (from scorecard.yaml)
 */ -}}
 {{- $roundClass := "text-white" -}}
 {{- if or (eq .kind "preseason") (eq .kind "eurocup") -}}
@@ -17,6 +18,9 @@ Context (dict):
 <div class="status-card{{ if eq .kind "international" }} nations-cup-card{{ end }}">
   <div class="flex items-center justify-between mb-3">
     <span class="font-mono text-xs {{ $roundClass }} tracking-wider">{{ .round }}</span>
+    {{- if .provisional }}
+    <span class="font-mono text-[10px] text-muted tracking-wider">PROVISIONAL</span>
+    {{- end }}
   </div>
   <h4 class="font-mono text-sm font-bold text-white mb-1">{{ .title }}</h4>
   <p class="font-mono text-xs text-muted mb-1">{{ .location }}</p>

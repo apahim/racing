@@ -1,11 +1,16 @@
 {{- /*
 event-counts: campaign counts computed from scorecard.yaml events.
 
+Single source for every event/circuit number on the site — never hardcode
+an event count in a template. Convention used across all pages:
+  season events (Irish championship) + international (Nations Cup) = total.
+
 Returns (dict):
-  season    events in the Irish championship season (excl. international)
-  total     all events incl. international
-  rounds    championship rounds only
-  circuits  distinct venues used by season events
+  season        Irish championship season events (excl. international)
+  international standalone international events (Nations Cup)
+  total         all events incl. international
+  rounds        championship rounds only
+  circuits      distinct venues used by season events
 */ -}}
 {{- $events := hugo.Data.scorecard.events -}}
 {{- $season := where $events "kind" "!=" "international" -}}
@@ -15,6 +20,7 @@ Returns (dict):
 {{- end -}}
 {{- return (dict
   "season" (len $season)
+  "international" (len (where $events "kind" "international"))
   "total" (len $events)
   "rounds" (len (where $events "kind" "round"))
   "circuits" (len (uniq $venues))

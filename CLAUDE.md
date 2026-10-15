@@ -17,7 +17,7 @@ npm run build        # production build to public/
 - `content/` — page content as front-matter-only Markdown files (content lives in custom layouts)
 - `data/scorecard.yaml` — single source of truth for dynamic UI: metrics, track laps, campaign facts, race calendar, availability
 - `layouts/` — Hugo templates: `_default/baseof.html` is the shell, `index.html` is the homepage
-- `layouts/partials/` — reusable components: nav, hero, footer, head, tier-card, metric-bar, track-bar, event-card, event-counts, prep-progress
+- `layouts/partials/` — reusable components: nav, hero, footer, head, tier-card, metric-bar, track-bar, event-card, event-counts, img (intrinsic dimensions), method-strip
 - `layouts/foundation/single.html` — Phase 1: Foundation (physical, track, BoxBox sections)
 - `layouts/competition/single.html` — Phase 2: Competition (campaign, team, telemetry, control env)
 - `layouts/partnerships/single.html` — partnership tiers and value proposition
@@ -70,7 +70,7 @@ updates every event and circuit count. Use `hugo.Data.scorecard` (not the deprec
 The site follows a phased campaign narrative:
 
 - **Dashboard** (`/`) — homepage with hero scorecard, The Playbook (methodology + phase cards), founder bio, partnerships CTA
-- **Foundation** (`/foundation/`) — Phase 1 detail: physical optimization (119→89kg), track development, BoxBox telemetry, KartSim
+- **Foundation** (`/foundation/`) — Phase 1 detail: physical optimization (119 kg baseline → 88 kg target achieved, 83 kg latest), track development, BoxBox telemetry, KartSim
 - **Competition** (`/competition/`) — Phase 2 detail: T4 championship, Stapleton Motorsport, Alfano 7 telemetry, race calendar
 - **Partnerships** (`/partnerships/`) — partnership tiers (Apex, Grid Partner, Supporter)
 

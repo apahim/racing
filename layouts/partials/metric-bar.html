@@ -1,37 +1,47 @@
 {{- /*
-metric-bar: renders a scorecard progress bar row.
+metric-bar: renders a labeled scorecard metric row.
 
 Context (dict):
-  label         display label (e.g. "Weight")
-  start         starting value (number; 0 for cumulative metrics)
-  current       current value
-  target        target value
-  unit          unit suffix (e.g. "kg", "bpm", "h")
-  lowerIsBetter true when progress is measured from start towards a
-                lower target (weight, RHR); false for plain ratios
-  class         optional classes for the wrapper div
-                (e.g. "mb-4 pb-4 border-b border-subtle")
+  m      metric object from data/scorecard.yaml:
+         label, unit, baseline, current, target,
+         targetStatus ("on-track" | "achieved"), note
+  class  optional classes for the wrapper div
+
+Direction is derived from the data: when target < baseline the metric
+improves downward (weight, resting HR), otherwise upward (cumulative hours).
+Achieved metrics render a full green bar and never a ratio above 100%.
 */ -}}
+{{- $m := .m -}}
+{{- $downward := lt $m.target $m.baseline -}}
 {{- $pct := 0 -}}
-{{- if .lowerIsBetter -}}
-  {{- $pct = math.Round (mul (div (sub .start .current | float) (sub .start .target | float)) 100) -}}
+{{- if $downward -}}
+  {{- $pct = math.Round (mul (div (sub $m.baseline $m.current | float) (sub $m.baseline $m.target | float)) 100) -}}
 {{- else -}}
-  {{- $pct = math.Round (mul (div (float .current) (float .target)) 100) -}}
+  {{- $pct = math.Round (mul (div (sub $m.current $m.baseline | float) (sub $m.target $m.baseline | float)) 100) -}}
 {{- end -}}
-{{- $done := ge $pct 100 -}}
-{{- $width := math.Min 100 $pct -}}
+{{- $achieved := eq $m.targetStatus "achieved" -}}
+{{- $width := math.Min 100 (math.Max 0 $pct) -}}
 <div{{ with .class }} class="{{ . }}"{{ end }}>
-  <span class="text-muted text-xs uppercase tracking-wider block mb-2">{{ .label }}</span>
-  <div class="flex items-center gap-2.5">
-    <span class="text-xs text-muted tabular-nums shrink-0 w-14">{{ lang.FormatNumber 0 .start }} {{ .unit }}</span>
-    <div class="flex-1">
-      <div class="progress-track">
-        <div class="progress-fill {{ if $done }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ $width }}%"></div>
-      </div>
-      <div style="width: {{ $width }}%">
-        <span class="block text-right text-[11px] text-white font-bold whitespace-nowrap mt-1">{{ lang.FormatNumber 0 .current }} {{ .unit }}</span>
-      </div>
-    </div>
-    <span class="text-xs text-muted tabular-nums shrink-0 w-14 text-right">{{ lang.FormatNumber 0 .target }} {{ .unit }}</span>
+  <div class="flex items-baseline justify-between gap-3 mb-2">
+    <span class="text-muted text-xs uppercase tracking-wider">{{ $m.label }}</span>
+    {{- if $achieved }}
+    <span class="text-green-400 text-[11px] font-bold tracking-wider whitespace-nowrap">&#10003; {{ lang.FormatNumber 0 $m.target }} {{ $m.unit }} target reached</span>
+    {{- else }}
+    <span class="text-muted text-[11px] tracking-wider whitespace-nowrap">target {{ lang.FormatNumber 0 $m.target }} {{ $m.unit }}</span>
+    {{- end }}
   </div>
+  <div class="progress-track">
+    <div class="progress-fill {{ if $achieved }}bg-green-500{{ else }}bg-accent{{ end }}" style="width: {{ $width }}%"></div>
+  </div>
+  <div class="flex items-baseline justify-between gap-3 mt-1.5">
+    {{- if gt $m.baseline 0 }}
+    <span class="text-xs text-muted tabular-nums">{{ lang.FormatNumber 0 $m.baseline }} {{ $m.unit }} baseline</span>
+    <span class="text-xs text-white font-bold tabular-nums">{{ lang.FormatNumber 0 $m.current }} {{ $m.unit }} current</span>
+    {{- else }}
+    <span class="text-xs text-white font-bold tabular-nums">{{ lang.FormatNumber 0 $m.current }} {{ $m.unit }} to date</span>
+    {{- end }}
+  </div>
+  {{- with $m.note }}
+  <p class="text-muted text-[11px] mt-1.5 leading-snug">{{ . }}</p>
+  {{- end }}
 </div>

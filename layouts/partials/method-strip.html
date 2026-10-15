@@ -1,0 +1,29 @@
+{{- /*
+method-strip: renders the Foundation page analysis structure —
+Method → Evidence → Finding → Action → Next improvement.
+
+Context (dict):
+  method    how the input is produced (required)
+  evidence  what is recorded / measured (required)
+  finding   a measured conclusion — optional, only when one exists;
+            never fabricate a finding to fill the slot
+  action    what is done with it (required)
+  next      the next planned improvement (required)
+*/ -}}
+{{- $rows := slice
+  (dict "k" "Method" "v" .method)
+  (dict "k" "Evidence" "v" .evidence)
+-}}
+{{- with .finding -}}
+  {{- $rows = $rows | append (dict "k" "Finding" "v" .) -}}
+{{- end -}}
+{{- $rows = $rows | append (dict "k" "Action" "v" .action) -}}
+{{- $rows = $rows | append (dict "k" "Next" "v" .next) -}}
+<dl class="mt-8 border border-subtle rounded-lg divide-y divide-subtle bg-surface/60 font-mono text-xs overflow-hidden">
+  {{- range $rows }}
+  <div class="flex gap-4 px-4 py-3">
+    <dt class="w-20 shrink-0 text-muted uppercase tracking-wider">{{ .k }}</dt>
+    <dd class="text-slate leading-relaxed">{{ .v }}</dd>
+  </div>
+  {{- end }}
+</dl>

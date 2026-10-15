@@ -1,0 +1,12 @@
+{{- /*
+img: <img> with intrinsic dimensions read from static/ (CLS prevention).
+
+Context (dict):
+  file   path under static/ (e.g. "/static/img/apahim.webp")
+  alt    alt text (required)
+  class  optional classes (e.g. "w-full h-auto")
+  eager  true to disable lazy loading (above-the-fold images)
+*/ -}}
+{{- $dims := imageConfig .file -}}
+{{- $src := replace .file "/static/" "/" -}}
+<img src="{{ $src }}" alt="{{ .alt }}" width="{{ $dims.Width }}" height="{{ $dims.Height }}"{{ with .class }} class="{{ . }}"{{ end }}{{ if not .eager }} loading="lazy"{{ end }} decoding="async">

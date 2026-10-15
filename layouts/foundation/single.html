@@ -14,7 +14,8 @@
     <p class="text-slate text-lg max-w-3xl">
       Before competing at championship level, every element requires dedicated preparation.
       The foundation phase runs from {{ $sc.campaign.phases.foundation.long }}: physical,
-      technical and technological preparation executed in parallel.
+      technical and technological preparation executed in parallel. Each discipline below
+      follows the same loop: method, evidence, action, next improvement.
     </p>
   </div>
 </section>
@@ -28,7 +29,9 @@
         <span class="section-label">// Data Acquisition</span>
         <h2 class="section-title">Live Data Acquisition</h2>
         <p class="text-slate leading-relaxed mb-6">
-          Rental karts have no onboard telemetry. To fill that gap, the preparation
+          <span class="text-white font-semibold">Purpose:</span> rental karts have no
+          onboard telemetry, and a lap time alone says nothing about
+          <em>why</em> it was fast or slow. To close that gap, the preparation
           phase uses a <span class="text-white font-semibold">RaceBox Mini</span> GPS
           receiver paired with <span class="text-white font-semibold">RaceChrono Pro</span>
           to create a dedicated data acquisition stack that provides live lap timing,
@@ -59,12 +62,19 @@
             </span>
           </div>
         </div>
+        {{ partial "method-strip.html" (dict
+          "method" "RaceBox Mini 25Hz GPS receiver paired with RaceChrono Pro on every rental kart session, with GoPro GPS extraction as fallback."
+          "evidence" "Live lap timing, sector splits and GPS racing-line traces recorded on every outing."
+          "action" "Every session becomes a structured dataset for post-session analysis in BoxBox."
+          "next" "Alfano 7 onboard data logger for real-time telemetry in the 2027 championship."
+        ) }}
       </div>
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger" data-src="/img/racechrono-live.webp">
-          <img src="/img/racechrono-live.webp" alt="RaceChrono Pro live timing during a rental kart session" class="w-full h-auto">
-        </div>
+        <button type="button" class="block w-full p-0 m-0 rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger"
+          data-src="/img/racechrono-live.webp" aria-label="Enlarge image: RaceChrono Pro live timing">
+          {{ partial "img.html" (dict "file" "/static/img/racechrono-live.webp" "alt" "RaceChrono Pro live timing during a rental kart session" "class" "w-full h-auto") }}
+        </button>
         <p class="font-mono text-xs text-muted mt-3 tracking-wider">
           RaceChrono Pro live timing powered by RaceBox Mini 25Hz GPS
         </p>
@@ -84,6 +94,8 @@
         <span class="section-label">// Post-Session Analysis</span>
         <h2 class="section-title">BoxBox</h2>
         <p class="text-slate leading-relaxed mb-6">
+          <span class="text-white font-semibold">Purpose:</span> recorded telemetry only
+          becomes useful when it changes the next session.
           <span class="text-white font-semibold">BoxBox</span> is a purpose-built analysis
           platform developed specifically for this campaign. After each session, recorded
           telemetry is imported and transformed into actionable insights: lap time
@@ -97,8 +109,6 @@
           accessible to any rental kart driver with a GoPro, no specialized hardware
           required. For the community, it&rsquo;s an open-source entry point into
           data-driven karting. For the campaign, it&rsquo;s the analytical foundation.
-          The discipline built here carries directly into championship racing with the
-          Alfano 7 professional data logger.
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="https://boxbox.ie" target="_blank" rel="noopener" class="btn-primary">
@@ -108,12 +118,19 @@
             View on GitHub &rarr;
           </a>
         </div>
+        {{ partial "method-strip.html" (dict
+          "method" "Purpose-built open-source analysis platform (boxbox.ie) that ingests RaceChrono and GoPro telemetry."
+          "evidence" "Lap time progression, racing-line overlays on satellite imagery, corner-by-corner time loss and cumulative delta traces per session."
+          "action" "Each session is reviewed corner by corner; the identified corrections are tested in the next session."
+          "next" "The same analysis discipline carries into the championship on Alfano 7 data."
+        ) }}
       </div>
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger" data-src="/img/boxbox-overview.webp">
-          <img src="/img/boxbox-overview.webp" alt="BoxBox session overview dashboard" class="w-full h-auto">
-        </div>
+        <button type="button" class="block w-full p-0 m-0 rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger"
+          data-src="/img/boxbox-overview.webp" aria-label="Enlarge image: BoxBox session overview dashboard">
+          {{ partial "img.html" (dict "file" "/static/img/boxbox-overview.webp" "alt" "BoxBox session overview dashboard" "class" "w-full h-auto") }}
+        </button>
         <p class="font-mono text-xs text-muted mt-3 tracking-wider">
           Session overview: lap time chart, delta-to-best, coaching summary, weather data
         </p>
@@ -126,9 +143,10 @@
     <div class="grid md:grid-cols-3 gap-8 mb-16">
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-4 cursor-zoom-in lightbox-trigger" data-src="/img/boxbox-line.webp">
-          <img src="/img/boxbox-line.webp" alt="BoxBox racing line comparison" class="w-full h-auto">
-        </div>
+        <button type="button" class="block w-full p-0 m-0 rounded-lg overflow-hidden bg-surface screenshot-glow mb-4 cursor-zoom-in lightbox-trigger"
+          data-src="/img/boxbox-line.webp" aria-label="Enlarge image: BoxBox racing line comparison">
+          {{ partial "img.html" (dict "file" "/static/img/boxbox-line.webp" "alt" "BoxBox racing line comparison" "class" "w-full h-auto") }}
+        </button>
         <h4 class="font-mono text-sm font-bold text-white mb-2">Racing Line Comparison</h4>
         <p class="text-slate text-sm leading-relaxed">
           Overlay any two laps on satellite imagery with speed-coded color traces.
@@ -139,23 +157,25 @@
       </div>
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-4 cursor-zoom-in lightbox-trigger" data-src="/img/boxbox-corner.webp">
-          <img src="/img/boxbox-corner.webp" alt="BoxBox corner analysis" class="w-full h-auto">
-        </div>
+        <button type="button" class="block w-full p-0 m-0 rounded-lg overflow-hidden bg-surface screenshot-glow mb-4 cursor-zoom-in lightbox-trigger"
+          data-src="/img/boxbox-corner.webp" aria-label="Enlarge image: BoxBox corner analysis">
+          {{ partial "img.html" (dict "file" "/static/img/boxbox-corner.webp" "alt" "BoxBox corner analysis" "class" "w-full h-auto") }}
+        </button>
         <h4 class="font-mono text-sm font-bold text-white mb-2">Corner Analysis</h4>
         <p class="text-slate text-sm leading-relaxed">
           Every corner ranked by time loss against the best lap, with root-cause
           classification: entry-limited (braking too late or too early), apex-limited
           (carrying too little or too much speed mid-corner), or exit-limited
-          (poor traction or throttle timing). Each classification points to a
-          specific driver correction.
+          (poor traction or throttle timing). Each classification points to
+          a specific driver correction.
         </p>
       </div>
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-4 cursor-zoom-in lightbox-trigger" data-src="/img/boxbox-delta.webp">
-          <img src="/img/boxbox-delta.webp" alt="BoxBox cumulative delta and throttle/brake phases" class="w-full h-auto">
-        </div>
+        <button type="button" class="block w-full p-0 m-0 rounded-lg overflow-hidden bg-surface screenshot-glow mb-4 cursor-zoom-in lightbox-trigger"
+          data-src="/img/boxbox-delta.webp" aria-label="Enlarge image: BoxBox cumulative delta and throttle/brake phases">
+          {{ partial "img.html" (dict "file" "/static/img/boxbox-delta.webp" "alt" "BoxBox cumulative delta and throttle/brake phases" "class" "w-full h-auto") }}
+        </button>
         <h4 class="font-mono text-sm font-bold text-white mb-2">Lap Deep Dive</h4>
         <p class="text-slate text-sm leading-relaxed">
           The primary diagnostic view: a cumulative delta trace across the full lap
@@ -177,23 +197,27 @@
 
       <div class="order-2 md:order-1">
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow">
-          <img src="/img/session.webp" alt="On track session" class="w-full h-auto">
+          {{ partial "img.html" (dict "file" "/static/img/session.webp" "alt" "On track session" "class" "w-full h-auto") }}
         </div>
-        <div class="mt-6 space-y-2">
+        <div class="mt-6 space-y-2.5">
           {{- range $sc.tracks -}}
-          {{ partial "track-bar.html" (dict "name" .name "laps" .laps "target" .target "mono" true) }}
+          {{ partial "track-bar.html" (dict "name" .name "laps" .laps "mono" true) }}
           {{- end }}
         </div>
+        <p class="font-mono text-[11px] text-muted mt-3 tracking-wider">
+          Laps completed per championship circuit to date
+        </p>
       </div>
 
       <div class="order-1 md:order-2">
         <span class="section-label">// Seat Time</span>
         <h2 class="section-title">Track Development</h2>
         <p class="text-slate leading-relaxed mb-6">
-          No amount of data or conditioning substitutes for the neural pathways built
-          through repetition on track. Braking references, spatial awareness in traffic,
-          the feel of a kart rotating under load. These are learned through laps,
-          not theory. Seat time is the irreplaceable variable.
+          <span class="text-white font-semibold">Purpose:</span> no amount of data or
+          conditioning substitutes for the neural pathways built through repetition on
+          track. Braking references, spatial awareness in traffic, and the feel of a
+          kart rotating under load are learned through laps, not theory. Seat time is
+          the irreplaceable variable.
         </p>
         <p class="text-slate leading-relaxed mb-6">
           Throughout 2026, rental karting sessions across multiple circuits in Ireland and
@@ -230,6 +254,12 @@
             </span>
           </div>
         </div>
+        {{ partial "method-strip.html" (dict
+          "method" "Rental karting sessions across the Irish championship circuits throughout 2026."
+          "evidence" "Laps completed per championship circuit, listed above."
+          "action" "Each session focuses on racecraft, track adaptation and consistency under traffic."
+          "next" "Seat time continues across all championship circuits through the end of 2026."
+        ) }}
       </div>
 
     </div>
@@ -245,11 +275,12 @@
         <span class="section-label">// Simulation</span>
         <h2 class="section-title">KartSim Training</h2>
         <p class="text-slate leading-relaxed mb-6">
-          Physical seat time is complemented by thousands of hours in
-          <span class="text-white font-semibold">KartSim</span>, racing the Tillotson T4
-          kart across circuits throughout Europe and the UK. Sim training builds track
-          knowledge before arrival. Braking points, racing lines and corner sequences
-          are internalized before the first real session on an unfamiliar circuit.
+          <span class="text-white font-semibold">Purpose:</span> physical seat time is
+          finite and expensive; simulation extends it. Physical seat time is complemented by
+          thousands of hours in <span class="text-white font-semibold">KartSim</span>, racing
+          the Tillotson T4 kart across circuits throughout Europe and the UK. Sim training
+          builds track knowledge before arrival: braking points, racing lines and corner
+          sequences are internalized before the first real session on an unfamiliar circuit.
         </p>
         <div class="space-y-3">
           <div class="flex items-baseline gap-3">
@@ -276,16 +307,23 @@
             </span>
           </div>
         </div>
+        {{ partial "method-strip.html" (dict
+          "method" "KartSim with the Tillotson T4 kart model on laser-scanned EU/UK circuits, including AI traffic and race-start practice."
+          "evidence" "Simulator hours to date against the training goal, shown opposite."
+          "action" "Braking points, racing lines and corner sequences internalized before arriving at a circuit."
+          "next" "The 2,000-hour goal has been reached; sim training continues alongside track sessions through the foundation phase."
+        ) }}
       </div>
 
       <div>
-        <div class="rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger" data-src="/img/kartsim.jpg">
-          <img src="/img/kartsim.jpg" alt="KartSim T4 kart simulation training" class="w-full h-auto">
-        </div>
+        <button type="button" class="block w-full p-0 m-0 rounded-lg overflow-hidden bg-surface screenshot-glow cursor-zoom-in lightbox-trigger"
+          data-src="/img/kartsim.jpg" aria-label="Enlarge image: KartSim T4 kart simulation training">
+          {{ partial "img.html" (dict "file" "/static/img/kartsim.jpg" "alt" "KartSim T4 kart simulation training" "class" "w-full h-auto") }}
+        </button>
         <p class="font-mono text-xs text-muted mt-3 tracking-wider">
           KartSim: Tillotson T4 kart on a laser-scanned circuit
         </p>
-        {{ partial "metric-bar.html" (dict "label" "KartSim" "start" 0 "current" $sc.kartsim.current "target" $sc.kartsim.target "unit" "h" "lowerIsBetter" false "class" "mt-6") }}
+        {{ partial "metric-bar.html" (dict "m" $sc.kartsim "class" "mt-6") }}
       </div>
 
     </div>
@@ -301,13 +339,14 @@
         <span class="section-label">// The Driver</span>
         <h2 class="section-title">Driver Preparation</h2>
         <p class="text-slate leading-relaxed mb-6">
-          A competitive kart driver is a system: physical, cognitive and physiological
-          subsystems that must perform together under sustained stress. There is no power
-          steering, no power brakes, no traction control. Every input is a direct physical
-          output from the driver. Preparing that system requires
+          <span class="text-white font-semibold">Purpose:</span> a competitive kart driver
+          is a system: physical, cognitive and physiological subsystems that must perform
+          together under sustained stress. There is no power steering, no power brakes,
+          no traction control. Every input is a direct physical output from the driver.
+          Preparing that system requires
           <span class="text-white font-semibold">motorsport-specific conditioning</span>:
           <span class="text-white font-semibold">cardiovascular endurance</span> to maintain
-          decision-making quality through 15-minute finals under heat soak,
+          decision-making quality through 15-minute finals under heat soak, and
           <span class="text-white font-semibold">neck and core strength</span> to absorb
           accumulated G-forces without a headrest and deliver precise inputs lap after lap.
         </p>
@@ -340,19 +379,27 @@
             <span class="text-slate text-sm">
               {{- $w := $sc.weight -}}
               <span class="text-white font-semibold">Weight management</span>:
-              {{ $w.start }}kg to {{ $w.current }}kg since August 2025. Every kilogram above the {{ $sc.campaign.classMinimum }}kg class
+              {{ $w.baseline }} kg to {{ $w.current }} kg since August 2025, past the
+              {{ $w.target }} kg target. Every kilogram above the {{ $sc.campaign.classMinimum }} kg class
               minimum is a competitive penalty in acceleration, braking and cornering
             </span>
           </div>
         </div>
+        {{ partial "method-strip.html" (dict
+          "method" "Motorsport-specific conditioning: Zone-2 aerobic base, neck and core strength, and reaction training."
+          "evidence" "Weight and resting heart rate, shown opposite."
+          "finding" (printf "The %d kg weight target was reached, with the latest measurement at %d kg; resting HR is down from %d to %d bpm." $sc.weight.target $sc.weight.current $sc.rhr.baseline $sc.rhr.current)
+          "action" "Conditioning continues alongside track and simulator work through the foundation phase."
+          "next" (printf "Reach the %d bpm resting HR target and hold conditioning through the 2027 season." $sc.rhr.target)
+        ) }}
       </div>
 
       <div>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow mb-6">
-          <img src="/img/body.webp" alt="Physical transformation" class="w-full h-auto">
+          {{ partial "img.html" (dict "file" "/static/img/body.webp" "alt" "Physical preparation" "class" "w-full h-auto") }}
         </div>
-        {{ partial "metric-bar.html" (dict "label" "Weight" "start" $sc.weight.start "current" $sc.weight.current "target" $sc.weight.target "unit" "kg" "lowerIsBetter" true "class" "mb-4 pb-4 border-b border-subtle") }}
-        {{ partial "metric-bar.html" (dict "label" "Resting HR" "start" $sc.rhr.start "current" $sc.rhr.current "target" $sc.rhr.target "unit" "bpm" "lowerIsBetter" true) }}
+        {{ partial "metric-bar.html" (dict "m" $sc.weight "class" "mb-4 pb-4 border-b border-subtle") }}
+        {{ partial "metric-bar.html" (dict "m" $sc.rhr) }}
       </div>
 
     </div>
@@ -379,8 +426,9 @@
 </section>
 
 <!-- Lightbox overlay -->
-<div id="lightbox" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(10,10,10,0.95); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
-  <button id="lightbox-close" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:#8A8A8A; font-size:2rem; cursor:pointer; font-family:monospace; line-height:1;" aria-label="Close">&times;</button>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged image"
+  style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(10,10,10,0.95); backdrop-filter:blur(4px); align-items:center; justify-content:center;">
+  <button id="lightbox-close" type="button" style="position:absolute; top:1.5rem; right:1.5rem; background:none; border:none; color:#8A8A8A; font-size:2rem; cursor:pointer; font-family:monospace; line-height:1;" aria-label="Close">&times;</button>
   <img id="lightbox-img" src="" alt="" style="max-width:90vw; max-height:90vh; object-fit:contain;">
 </div>
 
@@ -389,18 +437,26 @@
     var lb = document.getElementById('lightbox');
     var img = document.getElementById('lightbox-img');
     var closeBtn = document.getElementById('lightbox-close');
+    var lastTrigger = null;
 
     document.querySelectorAll('.lightbox-trigger').forEach(function(el) {
       el.addEventListener('click', function() {
         img.src = el.getAttribute('data-src');
+        img.alt = el.getAttribute('aria-label') || 'Enlarged image';
         lb.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        lastTrigger = el;
+        closeBtn.focus();
       });
     });
 
     function close() {
       lb.style.display = 'none';
       document.body.style.overflow = '';
+      if (lastTrigger) {
+        lastTrigger.focus();
+        lastTrigger = null;
+      }
     }
 
     closeBtn.addEventListener('click', close);
@@ -408,7 +464,7 @@
       if (e.target === lb) close();
     });
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape' && lb.style.display !== 'none') close();
     });
   })();
 </script>
