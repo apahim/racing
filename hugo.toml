@@ -28,7 +28,7 @@ enableRobotsTXT = true
   nationsCupURL = "https://tillotson.ie/t4-series/t4-nations-cup/"
   # GoatCounter site code (the subdomain of <code>.goatcounter.com).
   # Empty = analytics tag stays hidden. Set to activate collection.
-  goatCounterCode = ""
+  goatCounterCode = "apahim"
 
 [menus]
   [[menus.main]]
