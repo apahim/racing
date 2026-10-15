@@ -35,8 +35,10 @@
           future results possible.
         </p>
         <p class="text-slate leading-relaxed mb-6">
-          This is a <span class="text-white font-semibold">rookie season</span>: {{ $counts.total }}
-          events across {{ $counts.circuits }} Irish circuits and one international round, each one a
+          This is a <span class="text-white font-semibold">rookie season</span>:
+          {{ $counts.season }} Irish championship events across {{ $counts.circuits }} circuits,
+          plus the Nations Cup international round in Valencia &mdash;
+          {{ $counts.total }} events in total, each one a
           controlled data collection opportunity. The goal is calibration, not trophies.
         </p>
         <div class="space-y-3">
@@ -44,7 +46,7 @@
             <span class="text-accent font-mono text-sm">&rsaquo;</span>
             <span class="text-slate text-sm">
               <span class="text-white font-semibold">Data collection</span>: telemetry
-              baselines across all {{ $counts.total }} events and {{ $counts.circuits }} circuits
+              baselines across all {{ $counts.total }} events
             </span>
           </div>
           <div class="flex items-baseline gap-3">
@@ -66,7 +68,7 @@
 
       <div>
         <div class="rounded-lg overflow-hidden screenshot-glow">
-          <img src="/img/t4.webp" alt="T4 kart on race day" class="w-full h-auto">
+          {{ partial "img.html" (dict "file" "/static/img/t4.webp" "alt" "T4 kart on race day" "class" "w-full h-auto") }}
         </div>
       </div>
 
@@ -81,7 +83,7 @@
 
       <div class="order-2 md:order-1">
         <div class="rounded-lg overflow-hidden screenshot-glow">
-          <img src="/img/stapleton-team.webp" alt="Stapleton Motorsport team" class="w-full h-auto">
+          {{ partial "img.html" (dict "file" "/static/img/stapleton-team.webp" "alt" "Stapleton Motorsport team" "class" "w-full h-auto") }}
         </div>
       </div>
 
@@ -167,7 +169,7 @@
 
       <div>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow">
-          <img src="/img/alfano.webp" alt="Alfano 7 telemetry analysis" class="w-full h-auto">
+          {{ partial "img.html" (dict "file" "/static/img/alfano.webp" "alt" "Alfano 7 telemetry analysis" "class" "w-full h-auto") }}
         </div>
       </div>
 
@@ -235,7 +237,7 @@
 
       <div>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow">
-          <img src="/img/t4-kart.webp" alt="Tillotson T4 Senior kart, multiple angles" class="w-full h-auto">
+          {{ partial "img.html" (dict "file" "/static/img/t4-kart.webp" "alt" "Tillotson T4 Senior kart, multiple angles" "class" "w-full h-auto") }}
         </div>
         <p class="font-mono text-xs text-muted mt-3 tracking-wider">
           Tillotson T4 Senior: sealed engine, mono-brand chassis
@@ -249,18 +251,18 @@
 <!-- Race Calendar -->
 <section class="py-20 border-t border-subtle">
   <div class="max-w-6xl mx-auto px-6">
-    <span class="section-label">// {{ $counts.total }} Events</span>
+    <span class="section-label">// {{ $counts.total }} Events{{ if $sc.calendar.provisional }} &middot; Provisional{{ end }}</span>
     <h2 class="section-title">2027 Race Calendar</h2>
     <p class="text-slate leading-relaxed mb-8 max-w-3xl">
       The Tillotson T4 Ireland Championship runs {{ $sc.campaign.phases.competition.window }} across Ireland's
       premier karting circuits, plus the Euro Cup. The T4 Nations Cup in October is a
-      separate international event. Provisional 2027 schedule based on the 2026 calendar.
+      separate international event. {{ $sc.calendar.note }}
     </p>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
 
       {{- range $sc.events }}
-      {{ partial "event-card.html" . }}
+      {{ partial "event-card.html" (merge . (dict "provisional" $sc.calendar.provisional)) }}
       {{- end }}
 
     </div>

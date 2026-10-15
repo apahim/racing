@@ -18,7 +18,6 @@
     <div class="grid md:grid-cols-2 gap-8 mt-8">
 
       {{- $sc := hugo.Data.scorecard -}}
-      {{- $avg := partial "prep-progress.html" . -}}
       {{- $counts := partial "event-counts.html" . -}}
 
       <a href="/foundation/" class="tier-card group block">
@@ -50,14 +49,7 @@
           </div>
         </div>
         <div class="mt-auto pt-4 border-t border-subtle">
-          <div class="flex justify-between mb-1.5">
-            <span class="font-mono text-xs text-muted">Preparation</span>
-            <span class="font-mono text-xs text-accent">{{ $avg }}%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill bg-accent" style="width: {{ $avg }}%"></div>
-          </div>
-          <span class="font-mono text-sm text-accent group-hover:underline tracking-wider mt-4 block">
+          <span class="font-mono text-sm text-accent group-hover:underline tracking-wider block">
             Explore Foundation &rarr;
           </span>
         </div>
@@ -76,7 +68,7 @@
         <div class="space-y-2 mb-6">
           <div class="flex items-baseline gap-2">
             <span class="text-yellow-400 text-xs">&#9675;</span>
-            <span class="text-slate text-sm">{{ $counts.season }} events across {{ $counts.circuits }} circuits, March&ndash;September</span>
+            <span class="text-slate text-sm">{{ $counts.season }} Irish championship events across {{ $counts.circuits }} circuits, March&ndash;September</span>
           </div>
           <div class="flex items-baseline gap-2">
             <span class="text-yellow-400 text-xs">&#9675;</span>
@@ -92,14 +84,7 @@
           </div>
         </div>
         <div class="mt-auto pt-4 border-t border-subtle">
-          <div class="flex justify-between mb-1.5">
-            <span class="font-mono text-xs text-muted">Competition</span>
-            <span class="font-mono text-xs text-accent">{{ $sc.campaign.phases.competition.progress }}%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill bg-accent" style="width: {{ $sc.campaign.phases.competition.progress }}%"></div>
-          </div>
-          <span class="font-mono text-sm text-accent group-hover:underline tracking-wider mt-4 block">
+          <span class="font-mono text-sm text-accent group-hover:underline tracking-wider block">
             Explore Competition &rarr;
           </span>
         </div>
@@ -148,7 +133,7 @@
       </div>
       <div>
         <div class="rounded-lg overflow-hidden bg-surface screenshot-glow aspect-[3/4]">
-          <img src="/img/apahim.webp" alt="Amador Pahim" class="w-full h-full object-cover">
+          {{ partial "img.html" (dict "file" "/static/img/apahim.webp" "alt" "Amador Pahim" "class" "w-full h-full object-cover") }}
         </div>
       </div>
     </div>
