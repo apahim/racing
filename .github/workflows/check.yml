@@ -1,0 +1,64 @@
+name: Check
+
+# Non-deploying quality gate: validates the canonical campaign data,
+# builds the site, and sanity-checks the rendered HTML.
+# Production deploys remain exclusively in deploy.yml (push to main).
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate campaign data
+        run: npm run validate
+
+      - name: Build site
+        run: npx hugo-extended --minify
+
+      - name: Sanity-check rendered HTML
+        run: |
+          # No malformed progress ratios (e.g. "830/100") may ship again.
+          # Anchored on text nodes (>...<) so Tailwind classes like
+          # text-yellow-600/60 don't trigger false positives.
+          if grep -rEo '>[0-9]{3,}/[0-9]+<' public/ --include='*.html'; then
+            echo "::error::Rendered HTML contains an unexplained NNN/NNN ratio"
+            exit 1
+          fi
+          # No template math errors.
+          if grep -rn 'NaN' public/ --include='*.html'; then
+            echo "::error::Rendered HTML contains NaN"
+            exit 1
+          fi
+          # Every content image must resolve to /img/... (guards against
+          # template regressions that mangle the src attribute).
+          bad_img=$(grep -rhoE '<img[^>]*src=[^ >]+' public/ --include='*.html' | grep -vE 'src="?/img/' || true)
+          if [ -n "$bad_img" ]; then
+            echo "::error::img tag with src outside /img/: $bad_img"
+            exit 1
+          fi
+          # Every referenced image must exist in the build output.
+          missing=0
+          for img in $(grep -rhoE '/img/[A-Za-z0-9._-]+' public/ --include='*.html' | sort -u); do
+            if [ ! -f "public$img" ]; then
+              echo "::error::Rendered HTML references missing image: $img"
+              missing=1
+            fi
+          done
+          [ "$missing" -eq 0 ] || exit 1
+          echo "Rendered HTML checks passed."
