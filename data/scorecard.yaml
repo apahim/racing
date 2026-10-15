@@ -59,6 +59,12 @@ tracks:
 
 campaign:
   classMinimum: 168
+  # Founding-partner commitment deadline, rendered on the Partnerships page.
+  foundingWindow: "31 January 2027"
+  # Audience evidence for the Partnerships page. The section renders only
+  # when entries exist — never add a value without a verifiable source
+  # (analytics export, user count). Entry shape: {label, value, detail}.
+  audience: []
   phases:
     foundation:
       label: "Aug 2025 – Dec 2026"

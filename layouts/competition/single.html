@@ -59,7 +59,7 @@
           <div class="flex items-baseline gap-3">
             <span class="text-accent font-mono text-sm">&rsaquo;</span>
             <span class="text-slate text-sm">
-              <span class="text-white font-semibold">Race craft</span>: starts, pack
+              <span class="text-white font-semibold">Racecraft</span>: starts, pack
               racing and race-day rhythm under competitive pressure
             </span>
           </div>
@@ -255,8 +255,10 @@
     <h2 class="section-title">2027 Race Calendar</h2>
     <p class="text-slate leading-relaxed mb-8 max-w-3xl">
       The Tillotson T4 Ireland Championship runs {{ $sc.campaign.phases.competition.window }} across Ireland's
-      premier karting circuits, plus the Euro Cup. The T4 Nations Cup in October is a
-      separate international event. {{ $sc.calendar.note }}
+      premier karting circuits, plus the Euro Cup. The
+      <a href="{{ site.Params.nationsCupURL }}" target="_blank" rel="noopener"
+        class="text-accent hover:text-orange-400 underline decoration-accent/40 underline-offset-2">T4 Nations Cup</a>
+      in October is a separate international event. {{ $sc.calendar.note }}
     </p>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">

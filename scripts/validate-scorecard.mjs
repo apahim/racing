@@ -110,6 +110,24 @@ if (!campaign || typeof campaign !== 'object') {
   if (!isNumber(campaign.classMinimum) || campaign.classMinimum <= 0) {
     fail('campaign.classMinimum: must be a positive number');
   }
+  if ('foundingWindow' in campaign && !isNonEmptyString(campaign.foundingWindow)) {
+    fail('campaign.foundingWindow: must be a non-empty string when present');
+  }
+  if ('audience' in campaign) {
+    if (!Array.isArray(campaign.audience)) {
+      fail('campaign.audience: must be an array');
+    } else {
+      for (const [i, a] of campaign.audience.entries()) {
+        if (!a || typeof a !== 'object') {
+          fail(`campaign.audience[${i}]: must be an object`);
+          continue;
+        }
+        for (const field of ['label', 'value', 'detail']) {
+          if (!isNonEmptyString(a[field])) fail(`campaign.audience[${i}].${field}: must be a non-empty string`);
+        }
+      }
+    }
+  }
   for (const phase of ['foundation', 'competition']) {
     const p = campaign.phases?.[phase];
     if (!p || !isNonEmptyString(p.label) || !isNonEmptyString(p.long)) {

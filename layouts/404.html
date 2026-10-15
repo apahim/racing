@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="min-h-[70vh] flex items-center">
+  <div class="max-w-3xl mx-auto px-6 w-full">
+
+    <div class="terminal-window glow-border mb-10">
+      <div class="terminal-bar">
+        <span class="terminal-dot bg-accent"></span>
+        <span class="terminal-dot bg-yellow-500"></span>
+        <span class="terminal-dot bg-green-500"></span>
+        <span class="font-mono text-xs text-muted ml-2">pahim@racing:~</span>
+      </div>
+      <div class="terminal-body text-slate font-mono text-sm space-y-1">
+        <p><span class="text-green-400">$</span> <span class="text-white">GET /unknown</span></p>
+        <p class="text-red-400">&rarr; 404 NOT FOUND</p>
+        <p class="text-muted"># this lap is not part of the campaign</p>
+      </div>
+    </div>
+
+    <span class="section-label">// Off Track</span>
+    <h1 class="font-mono text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+      404
+    </h1>
+    <p class="text-slate text-lg max-w-xl mb-8">
+      The page you requested doesn't exist. The data says we took a wrong
+      turn &mdash; let's get back on the racing line.
+    </p>
+
+    <div class="flex flex-wrap gap-4">
+      <a href="/" class="btn-primary">Back to the Dashboard</a>
+      <a href="/partnerships/" class="btn-outline">Partnerships</a>
+    </div>
+
+  </div>
+</section>
+{{ end }}
