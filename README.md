@@ -34,7 +34,6 @@ Outputs the production site to `public/` with minified assets.
 | Dashboard | `/` | Homepage: hero, system status, program summary |
 | Foundation | `/foundation/` | Phase 1: physical optimization, track development, BoxBox telemetry |
 | Competition | `/competition/` | Phase 2: T4 championship, Stapleton Motorsport, Alfano 7 |
-| The Program | `/about/` | Overview hub: mission, phase cards, timeline, founder |
 | Partnerships | `/partnerships/` | Partnership tiers and value proposition |
 
 ## Project Structure
